@@ -23,7 +23,7 @@ const Header = () => {
         {/* Social Icons */}
         <div className="social-icons">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/angelshresthacs"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
@@ -32,7 +32,7 @@ const Header = () => {
           </a>
 
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://linkedin.com/in/angelshrestha"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
@@ -41,7 +41,7 @@ const Header = () => {
           </a>
 
           <a
-            href="https://leetcode.com/yourusername"
+            href="https://leetcode.com/angelshresthacs"
             target="_blank"
             rel="noreferrer"
             aria-label="LeetCode"

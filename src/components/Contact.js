@@ -31,13 +31,13 @@ const Contact = () => {
           <p>I'm always open to discussing new projects, opportunities, or partnerships.</p>
           <div className="contact-details">
             <div className="contact-item">
-              <strong>Email:</strong> your.email@example.com
+              <strong>Email:</strong> angel@angelshrestha.com
             </div>
             <div className="contact-item">
-              <strong>LinkedIn:</strong> linkedin.com/in/yourprofile
+              <strong>LinkedIn:</strong> linkedin.com/in/angelshrestha
             </div>
             <div className="contact-item">
-              <strong>GitHub:</strong> github.com/yourusername
+              <strong>GitHub:</strong> github.com/angelshresthacs
             </div>
           </div>
         </div>
