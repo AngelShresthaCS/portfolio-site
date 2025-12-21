@@ -1,0 +1,31 @@
+.leetcode {
+  padding: 6rem 2rem;
+  background: #05070f;
+}
+
+.leetcode-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.leetcode-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #e5e7eb;
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+}
+
+.leetcode-card {
+  display: flex;
+  justify-content: center;
+}
+
+.leetcode-card img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  background: #1a1a1a;
+}
