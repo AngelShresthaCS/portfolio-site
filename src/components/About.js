@@ -11,7 +11,7 @@ const About = () => {
         </div>
         <div className="about-text">
           <p>
-            I'm a Computer Engineering student at [University Name] with a passion for 
+            I'm Angel Singh Shrestha, a Computer Engineering student at the University of Texas At Arlington (UTA) with a passion for 
             both hardware and software. My interests lie in embedded systems, digital design, 
             and creating efficient solutions that bridge the gap between software and hardware.
           </p>
