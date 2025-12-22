@@ -19,15 +19,25 @@
 
 /* section title */
 .experience h2 {
-  position: relative;
-  z-index: 1;
+  
   font-size: 2.4rem;
   font-weight: 700;
-  text-align: center;
-  margin-bottom: 4rem;
   letter-spacing: -0.02em;
-  color: #0f172a;
+
+  color: #004cff;
+  background: #ffffff;
+
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+
+  border: 3px solid #004cff;
+  border-radius: 6px;
+
+  box-shadow:
+    0 6px 0 #004cff,
+    0 10px 20px rgba(0, 0, 0, 0.25);
 }
+
 
 /* layout */
 .experience-container {
