@@ -5,19 +5,124 @@ const Skills = () => {
   const skillCategories = [
     {
       title: 'Programming Languages',
-      skills: ['C/C++', 'Python', 'Java', 'JavaScript', 'Verilog/VHDL', 'Assembly']
+      skills: [
+        'Python',
+        'C',
+        'C++',
+        'Java',
+        'JavaScript',
+        'SQL (PostgreSQL)',
+        'R'
+      ]
     },
     {
-      title: 'Hardware & Embedded',
-      skills: ['Arduino', 'Raspberry Pi', 'FPGA', 'ARM Cortex', 'PCB Design', 'Microcontrollers']
+      title: 'Frameworks & Libraries',
+      skills: [
+        'React',
+        'Node.js',
+        'Django',
+        'Django REST Framework',
+        'Flask',
+        'FastAPI',
+        'Bootstrap',
+        'pandas',
+        'NumPy',
+        'Matplotlib'
+      ]
     },
     {
-      title: 'Software & Tools',
-      skills: ['React', 'Node.js', 'Git', 'MATLAB', 'Xilinx Vivado', 'Quartus']
+      title: 'Developer Tools & Platforms',
+      skills: [
+        'Git',
+        'GitHub',
+        'Docker',
+        'Travis CI',
+        'Google Cloud Platform',
+        'AWS (EC2)',
+        'VS Code',
+        'Visual Studio',
+        'PyCharm',
+        'IntelliJ',
+        'Eclipse',
+        'Jupyter Notebook',
+        'Google Colab'
+      ]
     },
     {
-      title: 'Other Skills',
-      skills: ['Digital Design', 'Circuit Analysis', 'Signal Processing', 'Linux', 'Networking', 'Database']
+      title: 'Cloud, Virtualization & Infrastructure',
+      skills: [
+        'Docker',
+        'Proxmox',
+        'Virtualization',
+        'AWS EC2',
+        'Linux System Administration',
+        'User & Group Management',
+        'Shell Scripting'
+      ]
+    },
+    {
+      title: 'Networking',
+      skills: [
+        'TCP/IP',
+        'Routing',
+        'Firewalls',
+        'VPNs',
+        'pfSense',
+        'WireGuard',
+        'IP Addressing',
+        'Network Configuration'
+      ]
+    },
+    {
+      title: 'Databases',
+      skills: [
+        'PostgreSQL',
+        'MySQL',
+        'SQLite'
+      ]
+    },
+    {
+      title: 'Hardware & Embedded Systems',
+      skills: [
+        'Raspberry Pi',
+        'GPIO',
+        'Sensor Integration',
+        'Breadboards & Wiring',
+        'Basic Circuit Design',
+        'Computer Architecture',
+        'Memory Management'
+      ]
+    },
+    {
+      title: 'Data, Systems & CS Foundations',
+      skills: [
+        'Data Structures & Algorithms',
+        'Data Analysis',
+        'Operating Systems',
+        'Memory Management',
+        'Computer Architecture'
+      ]
+    },
+    {
+      title: 'Documentation, Research & Support',
+      skills: [
+        'Technical Documentation',
+        'Academic Literature Review',
+        'Proposal Writing',
+        'Technical Support',
+        'Troubleshooting',
+        'Ticket Handling',
+        'End-User Support'
+      ]
+    },
+    {
+      title: 'Design & Productivity Tools',
+      skills: [
+        'Microsoft Office Suite',
+        'Figma',
+        'Adobe Photoshop',
+        'Blender (3D Modeling)'
+      ]
     }
   ];
 

@@ -4,33 +4,33 @@ import './Experience.css';
 const Experience = () => {
   const experiences = [
     {
-      title: 'Hardware Engineering Intern',
-      company: 'Tech Company XYZ',
-      period: 'Summer 2024',
+      title: 'Service Desk Analyst (Tier II)',
+      company: 'Office of Information Technology, The University of Texas at Arlington',
+      period: 'Dec 2025 – Present',
       description: [
-        'Assisted in FPGA development for signal processing applications',
-        'Collaborated with team on PCB design and testing',
-        'Performed circuit analysis and troubleshooting'
+        'Promoted to Tier II with elevated administrative privileges to handle escalated incidents involving identity management, access control, and system reliability.',
+        'Administered user accounts and security groups using Active Directory Users and Computers (ADUC) and the Microsoft Admin Portal.',
+        'Resolved complex authentication, authorization, and access issues across enterprise systems.'
       ]
     },
     {
-      title: 'Research Assistant',
-      company: 'University Lab',
-      period: '2023 - Present',
+      title: 'Service Desk Analyst (Tier I)',
+      company: 'Office of Information Technology, The University of Texas at Arlington',
+      period: 'Jun 2025 – Dec 2025',
       description: [
-        'Working on embedded systems research project',
-        'Developing sensor networks using IoT protocols',
-        'Published paper on low-power microcontroller optimization'
+        'Supported mission-critical campus infrastructure by diagnosing and resolving hardware, software, and networking issues across Linux and Windows systems.',
+        'Diagnosed connectivity and uptime issues using TCP/IP fundamentals and system-level troubleshooting.',
+        'Developed internal JavaScript automation to streamline operational workflows and reduce manual effort.'
       ]
     },
     {
-      title: 'Teaching Assistant - Digital Logic',
-      company: 'University Name',
-      period: 'Fall 2023',
+      title: 'Undergraduate Research Assistant',
+      company: 'The University of Texas at Arlington (CRA UR2PhD)',
+      period: 'May 2025 – Jul 2025',
       description: [
-        'Assisted professor in Digital Logic Design course',
-        'Conducted lab sessions and office hours',
-        'Graded assignments and provided student support'
+        'Conducted research on 3D in-memory computing architectures, focusing on memory-centric computation and performance scalability.',
+        'Analyzed hardware–software tradeoffs through literature review and technical proposal development.',
+        'Contributed to early-stage research exploration in emerging computer architecture paradigms.'
       ]
     }
   ];

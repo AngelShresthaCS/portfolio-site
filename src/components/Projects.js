@@ -4,28 +4,50 @@ import './Projects.css';
 const Projects = () => {
   const projects = [
     {
-      title: 'FPGA-Based Image Processor',
-      description: 'Implemented real-time image processing filters on Xilinx FPGA using Verilog. Achieved 60fps processing with edge detection and blur filters.',
-      image: '/images/project1.jpg',
-      technologies: ['Verilog', 'FPGA', 'Xilinx Vivado', 'Image Processing'],
-      github: 'https://github.com/yourusername/project1',
-      demo: '#'
+      title: 'Social Media Platform for Book Readers',
+      description:
+        'Designed and implemented a full-stack social platform for book readers using RESTful APIs and a React frontend. Handled over 1K requests per day with average response latency under 120 ms and supported 100+ concurrent authenticated sessions during testing. Deployed on AWS with MySQL-backed persistence and integrated monitoring.',
+      image: '/images/project-books.png',
+      technologies: [
+        'Django REST Framework',
+        'React',
+        'MySQL',
+        'AWS',
+        'Zabbix'
+      ],
+      github: 'https://github.com/angelshresthacs',
+      demo: ''
     },
     {
-      title: 'IoT Weather Station',
-      description: 'Built an IoT weather monitoring system using ESP32, various sensors, and a React dashboard for real-time data visualization.',
-      image: '/images/project2.jpg',
-      technologies: ['C++', 'ESP32', 'React', 'MQTT', 'Node.js'],
-      github: 'https://github.com/yourusername/project2',
-      demo: '#'
+      title: 'Networking Homelab & Self-Hosted Infrastructure',
+      description:
+        'Built and maintained a virtualized homelab hosting 10+ services using Proxmox with isolated networking and resource allocation. Configured pfSense firewall and routing achieving 900+ Mbps throughput with sub-5 ms internal latency. Implemented centralized monitoring and log analysis to maintain zero unplanned downtime.',
+      image: '/images/project-homelab.png',
+      technologies: [
+        'Proxmox',
+        'pfSense',
+        'AWS EC2',
+        'Nginx',
+        'WireGuard',
+        'Zabbix',
+        'Splunk'
+      ],
+      github: 'https://github.com/angelshresthacs',
+      demo: ''
     },
     {
-      title: 'ARM-Based Game Console',
-      description: 'Designed a portable game console using ARM Cortex-M4, featuring custom PCB, LCD display, and game engine written in C.',
-      image: '/images/project3.jpg',
-      technologies: ['C', 'ARM', 'PCB Design', 'Embedded Systems'],
-      github: 'https://github.com/yourusername/project3',
-      demo: '#'
+      title: 'AI-Based Soap Quality Detection Model',
+      description:
+        'Developed a machine learning model using SUDS sensor data to classify soap quality for cartography-related applications. Achieved 100% accuracy in detecting defective samples during validation and logged training and inference outputs for analysis and debugging. Project received the Best Group Presentation Award.',
+      image: '/images/project-ai.png',
+      technologies: [
+        'Python',
+        'Machine Learning',
+        'Sensors',
+        'Data Analysis'
+      ],
+      github: 'https://github.com/angelshresthacs',
+      demo: ''
     }
   ];
 
@@ -41,18 +63,33 @@ const Projects = () => {
             <div className="project-content">
               <h3>{project.title}</h3>
               <p>{project.description}</p>
+
               <div className="project-technologies">
                 {project.technologies.map((tech, idx) => (
                   <span key={idx} className="tech-tag">{tech}</span>
                 ))}
               </div>
+
               <div className="project-links">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-btn">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-btn"
+                >
                   GitHub
                 </a>
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-btn">
-                  Demo
-                </a>
+
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-btn"
+                  >
+                    Demo
+                  </a>
+                )}
               </div>
             </div>
           </div>
