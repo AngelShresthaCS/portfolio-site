@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import './Contact.css';
 
+const FORM_ENDPOINT = "https://formspree.io/f/mlgrwdwb"; 
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+
+  const [status, setStatus] = useState("idle");
 
   const handleChange = (e) => {
     setFormData({
@@ -15,11 +19,29 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your form submission logic here (e.g., EmailJS, Formspree, etc.)
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    setStatus("loading");
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
   };
 
   return (
@@ -28,7 +50,10 @@ const Contact = () => {
       <div className="contact-container">
         <div className="contact-info">
           <h3>Let's Connect</h3>
-          <p>I'm always open to discussing new projects, opportunities, or partnerships.</p>
+          <p>
+            I’m open to discussing projects, opportunities, or collaborations.
+          </p>
+
           <div className="contact-details">
             <div className="contact-item">
               <strong>Email:</strong> angel@angelshrestha.com
@@ -41,6 +66,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
+
         <form className="contact-form" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -50,6 +76,7 @@ const Contact = () => {
             onChange={handleChange}
             required
           />
+
           <input
             type="email"
             name="email"
@@ -58,6 +85,7 @@ const Contact = () => {
             onChange={handleChange}
             required
           />
+
           <textarea
             name="message"
             placeholder="Your Message"
@@ -65,8 +93,27 @@ const Contact = () => {
             value={formData.message}
             onChange={handleChange}
             required
-          ></textarea>
-          <button type="submit" className="submit-btn">Send Message</button>
+          />
+
+          <button
+            type="submit"
+            className="submit-btn"
+            disabled={status === "loading"}
+          >
+            {status === "loading" ? "Sending..." : "Send Message"}
+          </button>
+
+          {status === "success" && (
+            <p className="contact-success">
+              Message sent successfully. I’ll get back to you soon.
+            </p>
+          )}
+
+          {status === "error" && (
+            <p className="contact-error">
+              Something went wrong. Please try again later.
+            </p>
+          )}
         </form>
       </div>
     </section>

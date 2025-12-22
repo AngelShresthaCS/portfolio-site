@@ -1,5 +1,7 @@
 import React from 'react';
 import './About.css';
+import avatar from './images/avatar.png';
+
 
 const About = () => {
   return (
@@ -7,7 +9,7 @@ const About = () => {
       <h2>About Me</h2>
       <div className="about-container">
         <div className="about-image">
-          <img src="/images/profile.jpg" alt="Profile" />
+          <img src={avatar} alt="Profile" />
         </div>
         <div className="about-text">
          <p>

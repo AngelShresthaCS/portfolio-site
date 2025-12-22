@@ -11,19 +11,19 @@ const Resume = () => {
 
         {/* Resume Card */}
         <div className="resume-card" onClick={() => setOpen(true)}>
+          <div className="resume-icon">
+            📄
+          </div>
           <div className="resume-card-content">
             <h3>View Resume</h3>
-            <p>Click to preview my resume</p>
+            <p>Preview my resume directly in the browser</p>
           </div>
         </div>
 
         {/* Download Button */}
-        <a
-          href="/resume.pdf"
-          download
-          className="resume-download"
-        >
-          Download Resume
+        <a href="/resume.pdf" download className="resume-download-btn">
+          <span>Download Resume</span>
+          <span className="download-icon">⬇</span>
         </a>
       </div>
 

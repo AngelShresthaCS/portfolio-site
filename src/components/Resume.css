@@ -5,7 +5,7 @@
 }
 
 .resume-container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
@@ -16,19 +16,22 @@
   margin-bottom: 3rem;
 }
 
-/* Resume card */
+/* Resume Card */
 
 .resume-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  border-radius: 18px;
   cursor: pointer;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.06),
     rgba(255, 255, 255, 0.02)
   );
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 3rem;
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .resume-card:hover {
@@ -36,27 +39,43 @@
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
 }
 
+.resume-icon {
+  font-size: 3rem;
+}
+
 .resume-card-content h3 {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
 }
 
 .resume-card-content p {
   color: #a5b4fc;
+  font-size: 0.95rem;
 }
 
-/* Download */
+/* Download Button */
 
-.resume-download {
-  display: inline-block;
-  margin-top: 2rem;
-  font-weight: 600;
-  color: #93c5fd;
+.resume-download-btn {
+  margin-top: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  font-weight: 700;
   text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.resume-download:hover {
-  text-decoration: underline;
+.resume-download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.45);
+}
+
+.download-icon {
+  font-size: 1.1rem;
 }
 
 /* Modal */
@@ -65,7 +84,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -88,7 +107,7 @@
   border: none;
 }
 
-/* Close button */
+/* Close Button */
 
 .resume-close {
   position: absolute;
