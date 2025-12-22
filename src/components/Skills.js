@@ -33,17 +33,13 @@ const Skills = () => {
     {
       title: 'Developer Tools & Platforms',
       skills: [
-        'Git',
-        'GitHub',
+        'Git / GitHub',
         'Docker',
         'Travis CI',
         'Google Cloud Platform',
         'AWS (EC2)',
         'VS Code',
         'Visual Studio',
-        'PyCharm',
-        'IntelliJ',
-        'Eclipse',
         'Jupyter Notebook',
         'Google Colab'
       ]
@@ -88,7 +84,7 @@ const Skills = () => {
         'GPIO',
         'Sensor Integration',
         'Breadboards & Wiring',
-        'Basic Circuit Design',
+        'Circuit Design',
         'Computer Architecture',
         'Memory Management'
       ]
@@ -101,18 +97,6 @@ const Skills = () => {
         'Operating Systems',
         'Memory Management',
         'Computer Architecture'
-      ]
-    },
-    {
-      title: 'Documentation, Research & Support',
-      skills: [
-        'Technical Documentation',
-        'Academic Literature Review',
-        'Proposal Writing',
-        'Technical Support',
-        'Troubleshooting',
-        'Ticket Handling',
-        'End-User Support'
       ]
     },
     {
