@@ -1,12 +1,20 @@
+/* =========================
+   SKILLS SECTION
+========================= */
+
 .skills {
   position: relative;
   padding: 7rem 2rem;
-  background: 
-    linear-gradient(
-      rgba(5, 7, 15, 0.82),
-      rgba(5, 7, 15, 0.82)
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 170, 255, 0.15),
+      rgba(0, 0, 0, 0.45) 55%,
+      rgba(0, 0, 0, 0.75) 85%
     ),
     url("./images/web-bg.jpg");
+
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -18,88 +26,108 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: 4rem;
-  color: #e5e7eb;
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: -0.02em;
 }
 
-/* layout */
+/* =========================
+   LAYOUT
+========================= */
+
 .skills-container {
   max-width: 1350px;
   margin: 0 auto;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 2.5rem;
 }
 
-/* glass panels */
-.skill-category {
-  background: rgba(10, 14, 30, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+/* =========================
+   CATEGORY CARDS
+========================= */
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.skill-category {
+  background: rgba(8, 12, 24, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 18px;
 
   padding: 2.2rem;
+
   box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.55),
-    inset 0 0 0 1px rgba(255,255,255,0.02);
+    0 28px 60px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 1px rgba(255,255,255,0.03);
 
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .skill-category:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow:
-    0 40px 90px rgba(0, 0, 0, 0.7),
-    inset 0 0 0 1px rgba(255,255,255,0.04);
+    0 38px 80px rgba(0, 0, 0, 0.85),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
-/* headings */
+/* =========================
+   CATEGORY TITLES
+========================= */
+
 .skill-category h3 {
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 1.6rem;
-  color: #c7d2fe;
+
+  color: #00ccff;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-/* skill layout */
+/* =========================
+   SKILL TAG GRID
+========================= */
+
 .skill-tags {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 0.75rem;
 }
 
-/* angular tech labels */
+/* =========================
+   SKILL TAGS
+========================= */
+
 .skill-tag {
   padding: 0.55rem 0.7rem;
   font-size: 0.78rem;
   font-weight: 500;
-  color: #d1d5f0;
-
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-
-  border-radius: 6px 14px 6px 14px; /* angular but soft */
   text-align: center;
+
+  color: #e2e8ff;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 6px 14px 6px 14px;
 
   transition:
     background 0.2s ease,
     border 0.2s ease,
-    color 0.2s ease,
     transform 0.15s ease;
 }
 
 .skill-tag:hover {
-  background: rgba(99, 102, 241, 0.18);
-  border-color: rgba(99, 102, 241, 0.5);
-  color: #eef2ff;
+  background: rgba(0, 170, 255, 0.22);
+  border-color: rgba(0, 170, 255, 0.55);
   transform: translateY(-2px);
 }
 
-/* responsive */
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 768px) {
   .skills {
     padding: 5rem 1.5rem;

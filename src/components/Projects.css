@@ -1,61 +1,153 @@
+/* =========================
+   PROJECTS SECTION
+========================= */
+
 .projects {
-  background: white;
+  position: relative;
+  padding: 7rem 2rem;
+
+  background:
+    linear-gradient(
+      rgba(248, 250, 255, 0),
+      rgba(248, 250, 255, 0)
+    ),
+    url("./images/projects-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+
+/* =========================
+   TITLE WRAPPER (CENTERING)
+========================= */
+
+.projects-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.projects-title h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  color: #004cff;
+  background: #ffffff;
+
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+
+  border: 3px solid #004cff;
+  border-radius: 6px;
+
+  box-shadow:
+    0 6px 0 #004cff,
+    0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   LAYOUT
+========================= */
 
 .projects-container {
+  max-width: 1350px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
 }
 
+/* =========================
+   PROJECT CARD
+========================= */
+
 .project-card {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  display: grid;
+  grid-template-columns: 1.1fr 1.9fr;
+  gap: 2.6rem;
+
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 2.8rem;
+
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 20px 45px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.04);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-6px);
+  box-shadow:
+    0 30px 70px rgba(15, 23, 42, 0.12),
+    0 10px 20px rgba(15, 23, 42, 0.06);
 }
+
+/* =========================
+   IMAGE
+========================= */
 
 .project-image img {
   width: 100%;
-  height: 250px;
+  height: 100%;
   object-fit: cover;
+
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #ffffff;
 }
 
-.project-content {
-  padding: 1.5rem;
-}
+/* =========================
+   CONTENT
+========================= */
 
 .project-content h3 {
-  margin-bottom: 1rem;
-  color: #333;
-  font-size: 1.4rem;
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+  color: #0f172a;
 }
 
 .project-content p {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #475569;
+  margin-bottom: 1.8rem;
 }
+
+/* =========================
+   TECH STACK
+========================= */
 
 .project-technologies {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
 }
 
 .tech-tag {
-  background: #e8f5e9;
-  color: #2e7d32;
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.85rem;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  color: #1e293b;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+
+  border-radius: 6px 14px 6px 14px;
 }
+
+/* =========================
+   LINKS
+========================= */
 
 .project-links {
   display: flex;
@@ -64,13 +156,39 @@
 
 .project-btn {
   padding: 0.6rem 1.2rem;
-  background: #667eea;
-  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #3b82f6
+  );
+
+  border-radius: 10px;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background 0.3s;
+
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .project-btn:hover {
-  background: #764ba2;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(99, 102, 241, 0.45);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .project-card {
+    grid-template-columns: 1fr;
+    padding: 2.2rem;
+  }
+
+  .projects {
+    background-attachment: scroll;
+  }
 }
