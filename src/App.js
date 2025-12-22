@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import LeetCodeStats from './components/LeetCodeStats';
+import Resume from "./components/Resume";
 
 // Lazy load components that aren't immediately visible
 const About = lazy(() => import('./components/About'));
@@ -23,6 +24,7 @@ function App() {
         <Projects />
         <LeetCodeStats />
         <Experience />
+        <Resume /> 
         <Contact />
         <Footer />
       </Suspense>
