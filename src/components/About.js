@@ -26,10 +26,10 @@ const About = () => {
 
           <div className="about-info">
             <div className="info-item">
-              <strong>Email:</strong> your.email@example.com
+              <strong>Email:</strong> angel@angelshrestha.com
             </div>
             <div className="info-item">
-              <strong>Location:</strong> City, State
+              <strong>Location:</strong> Arlington, Texas
             </div>
             <div className="info-item">
               <strong>Education:</strong> BS in Computer Engineering

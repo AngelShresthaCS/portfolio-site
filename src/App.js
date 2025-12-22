@@ -20,11 +20,11 @@ function App() {
       <Hero />
       <Suspense fallback={<div>Loading...</div>}>
         <About />
-        <Skills />
+        <Resume />
         <Projects />
         <LeetCodeStats />
         <Experience />
-        <Resume /> 
+         <Skills />
         <Contact />
         <Footer />
       </Suspense>
