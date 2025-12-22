@@ -26,27 +26,32 @@
 
 .skills h2 {
   font-size: 2.4rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
 
-  color: rgba(255, 255, 255, 0.9);
-  background: #0b1220;
+  color: #020617;                 /* black text */
+  background: #ffffff;            /* light theme */
 
   display: inline-block;
-  padding: 0.6rem 1.6rem;
+  padding: 0.65rem 1.6rem;
 
-  border: 3px solid #38bdf8;
-  outline: 2px solid #020617;
+  /* inner accent */
+  border: 3px solid #38bdf8;      /* sky blue / spiderman vibe */
+
+  /* outer frame for visibility */
+  outline: 2px solid #003668;     /* near-black outer edge */
   outline-offset: 0;
 
   border-radius: 6px;
 
   box-shadow:
     0 6px 0 #38bdf8,
-    0 10px 22px rgba(0, 0, 0, 0.35);
+    0 10px 22px rgba(0, 0, 0, 0.25);
 
-  margin-bottom: 4rem;
+  margin: 0 auto 4rem auto;       /* TRUE center alignment */
+  text-align: center;
 }
+
 
 
 /* =========================

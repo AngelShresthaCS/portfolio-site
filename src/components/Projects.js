@@ -86,7 +86,7 @@ const Projects = () => {
                   className="project-btn"
                 >
                   GitHub
-                </a> */}
+                </a>
 
                 {project.demo && (
                   <a
@@ -98,7 +98,7 @@ const Projects = () => {
                     Demo
                   </a>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         ))}
