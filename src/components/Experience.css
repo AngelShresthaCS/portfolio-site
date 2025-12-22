@@ -1,157 +1,193 @@
+/* =========================
+   EXPERIENCE SECTION
+========================= */
+
 .experience {
   position: relative;
   padding: 7rem 2rem;
+
   background: url("./images/experience-bg.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
+
+  text-align: center;
 }
 
-/* subtle softening so background doesn't scream */
+/* soften background without killing it */
 .experience::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.027);
+  background: rgba(255, 255, 255, 0.18);
   z-index: 0;
 }
 
-/* section title */
+/* =========================
+   SECTION TITLE
+========================= */
+
 .experience h2 {
+  position: relative;
+  z-index: 1;
+
   font-size: 2.4rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 
-  color: #c1121f;                 /* red theme */
+  color: #c1121f;
   background: #ffffff;
 
   display: inline-block;
   padding: 0.6rem 1.4rem;
 
   border: 3px solid #c1121f;
+  outline: 3px solid #1f0103;
+  outline-offset: 0;
+
   border-radius: 6px;
 
   box-shadow:
     0 6px 0 #c1121f,
     0 10px 20px rgba(0, 0, 0, 0.25);
 
-  margin: 0 auto 4rem auto;       /* actual centering */
+  margin: 0 auto 4rem auto;
 }
 
-/* make inline-block center properly */
-.experience {
-  text-align: center;
-}
+/* =========================
+   LAYOUT
+========================= */
 
-
-
-/* layout */
 .experience-container {
   position: relative;
   z-index: 1;
+
   max-width: 1100px;
   margin: 0 auto;
+
   display: grid;
   gap: 3rem;
 }
 
-/* card */
+/* =========================
+   EXPERIENCE CARD
+========================= */
+
 .experience-card {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.6rem;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 2.8rem;
 
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  padding: 2.6rem;
-
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 2px solid rgba(15, 23, 42, 0.12);
 
   box-shadow:
-    0 20px 40px rgba(15, 23, 42, 0.08),
-    0 6px 14px rgba(15, 23, 42, 0.05);
+    0 18px 30px rgba(15, 23, 42, 0.12),
+    0 6px 10px rgba(15, 23, 42, 0.06);
 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: grid;
+  gap: 1.8rem;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .experience-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow:
-    0 30px 60px rgba(15, 23, 42, 0.12),
-    0 10px 22px rgba(15, 23, 42, 0.08);
+    0 26px 45px rgba(15, 23, 42, 0.16),
+    0 10px 18px rgba(15, 23, 42, 0.1);
 }
 
-/* header */
+/* =========================
+   HEADER
+========================= */
+
 .experience-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 1.5rem;
   flex-wrap: wrap;
+
+  text-align: left;
 }
 
-/* titles */
+/* job title */
 .experience-header h3 {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 0.3rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #020617;
+  margin-bottom: 0.35rem;
 }
 
+/* organization */
 .experience-header h4 {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #475569;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.45;
 }
 
-/* period badge */
+/* =========================
+   PERIOD LABEL
+========================= */
+
 .period {
   font-size: 0.8rem;
-  font-weight: 600;
-  color: #004cff;
+  font-weight: 700;
+  color: #1e40af;
 
-  padding: 0.45rem 0.75rem;
-  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
 
-  background: rgba(0, 76, 255, 0.08);
-  border: 1px solid rgba(0, 76, 255, 0.25);
+  background: #eef2ff;
+  border: 1px solid rgba(30, 64, 175, 0.35);
+
   white-space: nowrap;
 }
 
-/* list */
+/* =========================
+   EXPERIENCE LIST
+========================= */
+
 .experience-list {
   list-style: none;
   padding-left: 0;
   margin: 0;
+
   display: grid;
   gap: 0.75rem;
+
+  text-align: left;
 }
 
 .experience-list li {
   position: relative;
-  padding-left: 1.4rem;
+  padding-left: 1.5rem;
 
   font-size: 0.95rem;
   line-height: 1.7;
-  color: #334155;
+  color: #1f2937;
 }
 
-/* custom bullet */
+/* strong, resume-style bullet */
 .experience-list li::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0.6em;
 
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #004cff;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+
+  background: #c1121f;
 }
 
-/* responsive */
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 768px) {
   .experience {
     padding: 5rem 1.5rem;
@@ -163,7 +199,7 @@
   }
 
   .experience-card {
-    padding: 2rem;
+    padding: 2.2rem;
   }
 
   .experience-header {

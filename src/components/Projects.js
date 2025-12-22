@@ -5,9 +5,13 @@ const Projects = () => {
   const projects = [
     {
       title: 'Social Media Platform for Book Readers',
-      description:
-        'Designed and implemented a full-stack social platform for book readers using RESTful APIs and a React frontend. Handled over 1K requests per day with average response latency under 120 ms and supported 100+ concurrent authenticated sessions during testing. Deployed on AWS with MySQL-backed persistence and integrated monitoring.',
       image: '/images/project-books.png',
+      description: [
+        'Designed and implemented a full-stack social platform using Django REST Framework and React.',
+        'Handled over 1K API requests per day with average response latency under 120 ms.',
+        'Supported 100+ concurrent authenticated user sessions during load testing.',
+        'Deployed on AWS with MySQL-backed persistence and integrated monitoring for uptime and performance.'
+      ],
       technologies: [
         'Django REST Framework',
         'React',
@@ -20,9 +24,14 @@ const Projects = () => {
     },
     {
       title: 'Networking Homelab & Self-Hosted Infrastructure',
-      description:
-        'Built and maintained a virtualized homelab hosting 10+ services using Proxmox with isolated networking and resource allocation. Configured pfSense firewall and routing achieving 900+ Mbps throughput with sub-5 ms internal latency. Implemented centralized monitoring and log analysis to maintain zero unplanned downtime.',
       image: '/images/project-homelab.png',
+      description: [
+        'Built a virtualized homelab hosting 10+ services using Proxmox with isolated networking.',
+        'Configured pfSense firewall and routing achieving 900+ Mbps throughput.',
+        'Maintained sub-5 ms internal network latency under normal load.',
+        'Implemented centralized monitoring with Zabbix and log analysis using Splunk.',
+        'Achieved zero unplanned downtime through proactive monitoring and alerting.'
+      ],
       technologies: [
         'Proxmox',
         'pfSense',
@@ -37,9 +46,13 @@ const Projects = () => {
     },
     {
       title: 'AI-Based Soap Quality Detection Model',
-      description:
-        'Developed a machine learning model using SUDS sensor data to classify soap quality for cartography-related applications. Achieved 100% accuracy in detecting defective samples during validation and logged training and inference outputs for analysis and debugging. Project received the Best Group Presentation Award.',
       image: '/images/project-ai.png',
+      description: [
+        'Developed a machine learning model using SUDS sensor data to classify soap quality.',
+        'Achieved 100% accuracy in detecting defective samples during validation.',
+        'Logged training and inference outputs for analysis and debugging.',
+        'Project received the Best Group Presentation Award.'
+      ],
       technologies: [
         'Python',
         'Machine Learning',
@@ -53,12 +66,10 @@ const Projects = () => {
 
   return (
     <section id="projects" className="projects">
-      {/* Centered Section Title */}
       <div className="projects-title">
         <h2>PROJECTS</h2>
       </div>
 
-      {/* Projects Grid */}
       <div className="projects-container">
         {projects.map((project, index) => (
           <div key={index} className="project-card">
@@ -68,13 +79,16 @@ const Projects = () => {
 
             <div className="project-content">
               <h3>{project.title}</h3>
-              <p>{project.description}</p>
+
+              <ul className="project-points">
+                {project.description.map((point, idx) => (
+                  <li key={idx}>{point}</li>
+                ))}
+              </ul>
 
               <div className="project-technologies">
                 {project.technologies.map((tech, idx) => (
-                  <span key={idx} className="tech-tag">
-                    {tech}
-                  </span>
+                  <span key={idx} className="tech-tag">{tech}</span>
                 ))}
               </div>
 
