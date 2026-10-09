@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Angel Shrestha ? portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React portfolio refreshed from the supplied internship resume in October 2026.
 
-## Available Scripts
+## Run locally
 
-In the project directory, you can run:
+`npm ci`, then `npm start`. On Windows with PowerShell script restrictions, use `npm.cmd`.
 
-### `npm start`
+`npm run build` creates the production bundle. `npm test -- --watchAll=false` runs the content and interaction checks.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Update content
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Edit `src/data/portfolio.js` for education, projects, experience, skills, and certifications. Empty project/credential URLs intentionally hide the corresponding buttons. Only add real repository, demo, or verification links.
 
-### `npm test`
+The Solutions Architect certification is in progress, expected October 23, 2026, per the owner's clarification. The supplied downloadable `public/resume.pdf` still says October 9; replace that PDF with a re-export reflecting October 23 before publishing.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The contact form retains the existing Formspree endpoint. Confirm its destination and send a real test message before publishing; automated checks mock requests and do not send messages.
 
-### `npm run build`
+## Replace placeholder artwork
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Local SVG placeholders are in `public/images/placeholders/`:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `hero.svg`: hero background artwork.
+- `philosostream.svg` and `homelab.svg`: project previews.
+- `aws-ai.svg`, `aws-cloud.svg`, `github-actions.svg`, `aws-architect.svg`: generic credential artwork, not official badges.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Replace files directly or change image filenames in `src/data/portfolio.js`; the hero path is in `src/components/Portfolio.js`. Project artwork uses an 800 ? 480 ratio; the hero uses 640 ? 640; credential art uses 96 ? 96. Update alt text and remove the visible project placeholder labels after adding actual screenshots.
 
-### `npm run eject`
+## Suggested next improvements
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Add a PhilosoStream demo and a concise case study showing architecture, failure recovery, and measured performance with test conditions.
+- Add homelab architecture documentation and a public repository with sanitized configuration.
+- Replace generic certification artwork with official earned badge images; keep the in-progress credential visually distinct.
+- Replace the legacy embedded-system favicon with a personal monogram, and add a social preview image.
+- Modernize the Create React App build toolchain in a separate maintenance change; dependency installation currently reports upstream deprecation warnings.
