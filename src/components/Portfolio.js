@@ -63,7 +63,7 @@ function Header() {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <a className="brand" href="#home" onClick={() => selectSection('home')} aria-label="Angel Shrestha home">angel<span>.shrestha</span><b> / </b></a>
+        <a className="brand" href="#home" onClick={() => selectSection('home')} aria-label="Angel Shrestha home">Angel<span>.Shrestha</span><b> / </b></a>
         <button ref={toggle} className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="main-navigation" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes aria-hidden="true" /> : <FaBars aria-hidden="true" />}
         </button>
@@ -83,7 +83,7 @@ function Hero() {
   return (
     <section id="home" className="hero">
       <div className="hero-copy">
-        <p className="eyebrow">Computer Science · UT Arlington</p>
+        <p className="eyebrow">Computer Science · University of Texas At Arlington</p>
         <h1>Angel<br /><span>Shrestha.</span></h1>
         <p className="hero-focus">Software engineering. Cloud infrastructure. Applied AI.</p>
         <p className="hero-description">I build applications and the systems behind them. Currently studying Computer Science at UTA and working in Network Operations.</p>
