@@ -3,6 +3,8 @@ export const profile = {
   email: 'angelshresthacs@gmail.com',
   location: 'Arlington, Texas',
   university: 'University of Texas at Arlington',
+  universityLogo: 'university-logo.svg',
+  heroImage: 'avatar.png',
   degree: 'B.S. Computer Science',
   graduation: 'May 2028',
   gpa: '3.89',
@@ -31,11 +33,15 @@ export const projects = [{
 export const experiences = [{
   title: 'Student Technical Assistant — Network Operations',
   company: 'Office of Information Technology, University of Texas at Arlington',
+  logo: 'company-logo.svg',
+  logoAlt: 'UTA Office of Information Technology logo',
   period: 'February 2026 – Present',
   points: ['Manage observability and incident response across hybrid Azure and on-premises infrastructure with Zabbix, Grafana, Splunk, and PagerDuty; maintain a 90%+ same-day resolution rate for cross-functional escalations.', 'Diagnose Linux, application, and network incidents through centralized logs and telemetry, and evaluate production changes through Change Advisory Board processes.', 'Build browser-based JavaScript automation that reduces repetitive workflows for Tier 1 support teams.']
 }, {
   title: 'Undergraduate Research Assistant',
   company: 'University of Texas at Arlington',
+  logo: 'university-logo.svg',
+  logoAlt: 'University of Texas at Arlington logo',
   period: 'May 2025 – July 2025',
   points: ['Developed a Python simulation framework in Jupyter to calculate node-level mesh impedance for 2D in-memory computing architectures, delivering computational models for Electronic Design Analysis workflow analysis.']
 }];

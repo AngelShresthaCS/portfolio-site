@@ -24,3 +24,4 @@ yarn-error.log*
 
 # Temporary resume extraction tools
 /.tmp-pdf-tools/
+/.tmp-preview/
