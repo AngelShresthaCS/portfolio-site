@@ -3,7 +3,7 @@ export const profile = {
   email: 'angelshresthacs@gmail.com',
   location: 'Arlington, Texas',
   university: 'University of Texas at Arlington',
-  universityLogo: 'university-logo.svg',
+  universityLogo: 'https://upload.wikimedia.org/wikipedia/commons/d/da/UTA_logomark.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original',
   heroImage: 'avatar.png',
   degree: 'B.S. Computer Science',
   graduation: 'May 2028',
@@ -33,20 +33,21 @@ export const projects = [{
 export const experiences = [{
   title: 'Student Technical Assistant — Network Operations',
   company: 'Office of Information Technology, University of Texas at Arlington',
-  logo: 'company-logo.svg',
+  logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDt9hqztJ9DS6D4YwpPTzsiu5e8N6kgdADB-gLJ3BL1DfzwxTDo-8auITc&s=10',
   logoAlt: 'UTA Office of Information Technology logo',
   period: 'February 2026 – Present',
   points: ['Manage observability and incident response across hybrid Azure and on-premises infrastructure with Zabbix, Grafana, Splunk, and PagerDuty; maintain a 90%+ same-day resolution rate for cross-functional escalations.', 'Diagnose Linux, application, and network incidents through centralized logs and telemetry, and evaluate production changes through Change Advisory Board processes.', 'Build browser-based JavaScript automation that reduces repetitive workflows for Tier 1 support teams.']
 }, {
   title: 'Undergraduate Research Assistant',
   company: 'University of Texas at Arlington',
-  logo: 'university-logo.svg',
+  logo: 'https://cdn.freebiesupply.com/logos/large/2x/research-logo-black-and-white.png',
   logoAlt: 'University of Texas at Arlington logo',
   period: 'May 2025 – July 2025',
   points: ['Developed a Python simulation framework in Jupyter to calculate node-level mesh impedance for 2D in-memory computing architectures, delivering computational models for Electronic Design Analysis workflow analysis.']
 }];
 export const certifications = [{
   name: 'AWS Certified AI Practitioner',
+  credentialId: '',
   issuer: 'Amazon Web Services',
   date: 'August 7, 2026',
   status: 'Earned',
@@ -54,6 +55,7 @@ export const certifications = [{
   verification: 'https://www.credly.com/badges/64509ca1-40e6-4588-bdde-2c4cb054da61'
 }, {
   name: 'AWS Certified Cloud Practitioner',
+  credentialId: '',
   issuer: 'Amazon Web Services',
   date: 'August 14, 2026',
   status: 'Earned',
@@ -61,6 +63,7 @@ export const certifications = [{
   verification: 'https://www.credly.com/badges/2aa9f26a-f9d8-494f-9843-f74c6c15f6cf'
 }, {
   name: 'Microsoft Certified: GitHub Actions',
+  credentialId: '',
   issuer: 'Microsoft / GitHub',
   date: 'August 28, 2026',
   status: 'Earned',
@@ -68,6 +71,7 @@ export const certifications = [{
   verification: 'https://learn.microsoft.com/en-us/users/angelshrestha/credentials/ca647521ee00c033'
 }, {
   name: 'AWS Certified Solutions Architect',
+  credentialId: '',
   issuer: 'Amazon Web Services',
   date: 'October 23, 2026',
   status: 'In progress',

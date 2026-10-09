@@ -127,6 +127,9 @@ section { max-width: 1200px; margin: auto; padding: 88px 32px; border-bottom: 1p
 .certification-card img { display: block; margin-bottom: 20px; width: 82px; height: 82px; object-fit: contain; }
 .certification-card h3 { font-size: 1.05rem; line-height: 1.5; margin-bottom: 12px; letter-spacing: -.01em; }
 .certification-card p { font-size: .78rem; margin-bottom: 6px; }
+.certification-id { margin: 10px 0 0; font-size: .72rem; }
+.certification-id dt { color: var(--muted); }
+.certification-id dd { margin: 4px 0 0; font-family: monospace; overflow-wrap: anywhere; }
 .cert-status { align-self: flex-start; display: inline-block; font-size: .7rem; color: #dbc68e; margin-bottom: 12px; }
 .cert-status::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: currentColor; margin-right: 7px; vertical-align: middle; }
 .cert-status.earned { color: var(--accent); }

@@ -78,5 +78,9 @@ test('keeps professional credentials prominent and includes the supplied course 
   expect(within(courses).getByText('7F7TDA5Q2A0J')).toBeInTheDocument();
   expect(within(courses).getByText('40294036106007')).toBeInTheDocument();
   expect(within(courses).getByRole('link', { name: 'View React Basics credential', hidden: true })).toHaveAttribute('href', 'https://www.coursera.org/account/accomplishments/verify/O05MCEG33UGA');
+  expect(within(courses).getAllByRole('link', { name: /^View .* credential$/, hidden: true })).toHaveLength(9);
+  expect(within(courses).getByRole('link', { name: 'View Monitoring and Observability for Development and DevOps credential', hidden: true })).toHaveAttribute('href', 'https://www.coursera.org/account/accomplishments/verify/7F7TDA5Q2A0J');
+  expect(within(courses).queryByRole('link', { name: 'View UR2PhD Undergraduate Research Training Course Participant credential', hidden: true })).not.toBeInTheDocument();
+  expect(within(courses).queryByRole('link', { name: 'View Data Science Orientation credential', hidden: true })).not.toBeInTheDocument();
   expect(document.querySelector('.certification-grid').querySelectorAll('article')).toHaveLength(4);
 });

@@ -1,5 +1,6 @@
 // Course completions are separate from the professional certifications.
-// Add the certificate's actual verification URL when available.
+// React-style credential IDs automatically receive Coursera verification links.
+// Set verification to override that address for other credential providers.
 export const training = [
   {
     title: 'Monitoring and Observability for Development and DevOps',

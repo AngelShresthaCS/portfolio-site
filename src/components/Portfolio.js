@@ -177,6 +177,7 @@ function Certifications() {
           <span className={`cert-status ${cert.status === 'Earned' ? 'earned' : ''}`}>{cert.status}</span>
           <h3>{cert.name}</h3><p>{cert.issuer}</p>
           {cert.date && <p className="muted">{cert.status === 'Earned' ? 'Earned' : 'Expected'} {cert.date}</p>}
+          {cert.credentialId && <dl className="certification-id"><dt>Credential ID</dt><dd>{cert.credentialId}</dd></dl>}
           {cert.verification && <a href={cert.verification} target="_blank" rel="noreferrer">Verify credential <FaArrowRight aria-hidden="true" /></a>}
         </article>
       ))}</div>

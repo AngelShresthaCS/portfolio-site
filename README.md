@@ -52,7 +52,11 @@ Navigation highlights the section in view. The mobile menu closes on section sel
 
 ## Courses and training
 
-Professional certifications remain prominent. Eleven additional course and research-training completions appear in the expandable "Courses & training" list below them. Edit `src/data/training.js` for titles, issuers, completion dates, credential IDs, skills, and verification links. Only the supplied React Basics verification URL is set; add the other actual certificate links to each entry's `verification` field when available.
+Professional certifications remain prominent. Eleven additional course and research-training completions appear in the expandable "Courses & training" list below them. Edit `src/data/training.js` for titles, issuers, completion dates, credential IDs, skills, and verification links.
+
+Course IDs with 12 uppercase letters/numbers, including at least one of each, automatically link to `https://www.coursera.org/account/accomplishments/verify/{credentialId}`. Other ID formats and missing IDs do not generate a link. An explicit `verification` URL takes precedence. IDs are displayed as supplied; matching the format generates a link but does not confirm that the certificate is valid.
+
+Professional certification cards also support an optional `credentialId` in `src/data/portfolio.js`. Leave unavailable IDs empty; their existing Credly and Microsoft verification URLs still work. No ID was provided for Data Science Orientation or the professional certifications.
 
 ## Before publishing
 
