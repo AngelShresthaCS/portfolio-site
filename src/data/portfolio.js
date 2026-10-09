@@ -21,7 +21,7 @@ export const projects = [{
 }, {
   title: 'Cloud & Infrastructure Homelab',
   category: 'Cloud / Infrastructure',
-  image: 'homelab.png',
+  image: 'homelab.jpg',
   summary: 'A hands-on environment for running services, connecting hybrid infrastructure, and understanding how systems behave.',
   points: ['Operated 10+ virtualized and containerized services across Proxmox, AWS, and Azure.', 'Implemented network segmentation, reverse proxying, and secure remote access.', 'Centralized metrics and logs with Prometheus, Grafana, Zabbix, and Splunk.'],
   technologies: ['Linux', 'Docker', 'Proxmox', 'AWS', 'Azure', 'Nginx', 'Prometheus', 'Grafana'],
