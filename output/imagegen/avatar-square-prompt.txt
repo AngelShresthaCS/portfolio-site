@@ -1,0 +1,9 @@
+Mode: Built-in image_gen edit
+Input: public/images/placeholders/avatar.png
+Output: public/images/placeholders/avatar-square.png
+
+Edit the provided avatar into a clean, full square portrait for a personal developer portfolio. Use a 1024 by 1024 square canvas. Preserve the same person, exact facial proportions, facial features, skin tone, black hairstyle, brown eyes, neutral expression, front-facing pose, lavender collared shirt, and original crisp hand-drawn illustration style. Keep the face and hair as close to the original as possible.
+
+The original has an unwanted circular/elliptical cutout at the bottom of the shirt and shoulders. Remove that cutout by extending the shoulders and lavender shirt naturally beyond the left, right, and bottom edges of the square portrait. The lower portion must be a normal rectangular head-and-shoulders portrait crop: shirt spans the entire bottom edge, shoulder outlines continue naturally off the side edges, no curved circular boundary cutting through the torso, no gaps beneath the shirt. Keep comfortable breathing room above the hair, and keep the head centered at approximately the original scale. Complete only the missing shoulder and torso areas; do not redesign the person.
+
+Use a completely opaque, uniform dark navy background, color #142132, behind the head and shoulders. Clean up any speckled transparency artifacts. The image itself must be square edge to edge with straight corners. No circular backdrop, circle, ellipse, oval mask, vignette, badge, frame, border, rounded corners, halo, watermark, text, logo, gradients, or decorative elements.

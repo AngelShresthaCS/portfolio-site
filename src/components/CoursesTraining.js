@@ -1,31 +1,50 @@
 import React from 'react';
-import { FaArrowRight, FaGraduationCap, FaAward } from 'react-icons/fa';
-import { FiChevronDown } from 'react-icons/fi';
-import { SiGoogle, SiMeta } from 'react-icons/si';
+import { FaGraduationCap } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
+import { FiArrowUpRight, FiChevronDown } from 'react-icons/fi';
+import { SiCredly, SiMeta } from 'react-icons/si';
 import { training } from '../data/training';
 import { getCredentialVerificationUrl } from '../utils/credentials';
+import './CoursesTraining.css';
 
 function IssuerMark({ issuer }) {
-  if (issuer === 'IBM') return <span className="training-issuer-mark" aria-hidden="true">IBM</span>;
-  const Icon = issuer === 'Google' ? SiGoogle : issuer === 'Meta' ? SiMeta : issuer === 'Credly by Pearson' ? FaAward : FaGraduationCap;
-  return <span className="training-issuer-mark" aria-hidden="true"><Icon /></span>;
+  if (issuer === 'IBM') return <span className="course-provider-mark course-provider-ibm" aria-hidden="true">IBM</span>;
+  const marks = {
+    Google: { Icon: FcGoogle, className: 'course-provider-google' },
+    Meta: { Icon: SiMeta, className: 'course-provider-meta' },
+    'Credly by Pearson': { Icon: SiCredly, className: 'course-provider-credly' },
+  };
+  const { Icon, className } = marks[issuer] || { Icon: FaGraduationCap, className: 'course-provider-research' };
+  return <span className={`course-provider-mark ${className}`} aria-hidden="true"><Icon /></span>;
 }
 
 export default function CoursesTraining() {
   return (
-    <details className="training-disclosure">
-      <summary><span>Courses &amp; training</span><span className="training-count">{training.length} completed</span><FiChevronDown aria-hidden="true" /></summary>
-      <p className="training-intro">Additional coursework and research training completed alongside my degree.</p>
-      <ul className="training-list">
+    <details className="course-archive">
+      <summary className="course-archive-toggle"><span>Courses &amp; training</span><span className="course-count">{training.length} completed</span><FiChevronDown aria-hidden="true" /></summary>
+      <p className="course-intro">Additional coursework and research training alongside my degree.</p>
+      <ul className="course-list">
         {training.map(course => {
           const verification = getCredentialVerificationUrl(course);
+          const hasDetails = Boolean(course.credentialId || course.skills.length);
           return (
             <li key={course.title}>
-              <article className="training-entry">
-                <div className="training-entry-heading"><IssuerMark issuer={course.issuer} /><div><h3>{course.title}</h3><p>{course.issuer} <span aria-hidden="true">·</span> <time dateTime={course.dateTime}>{course.date}</time></p></div></div>
-                {course.credentialId && <dl className="training-id"><dt>Credential ID</dt><dd>{course.credentialId}</dd></dl>}
-                {course.skills.length > 0 && <p className="training-skills">{course.skills.join(' · ')}</p>}
-                {verification && <a className="training-link" href={verification} target="_blank" rel="noreferrer" aria-label={`View ${course.title} credential`}>View credential <FaArrowRight aria-hidden="true" /></a>}
+              <article className="course-entry">
+                <IssuerMark issuer={course.issuer} />
+                <div className="course-entry-copy">
+                  <h3>{course.title}</h3>
+                  <p className="course-metadata"><span>{course.issuer}</span><span aria-hidden="true">·</span><time dateTime={course.dateTime}>{course.date}</time></p>
+                </div>
+                {verification && <a className="course-verify" href={verification} target="_blank" rel="noreferrer" aria-label={`View ${course.title} credential`}>Verify <FiArrowUpRight aria-hidden="true" /></a>}
+                {hasDetails && (
+                  <details className="course-record">
+                    <summary aria-label={`${course.title} details`}>Details <FiChevronDown aria-hidden="true" /></summary>
+                    <div className="course-record-body">
+                      {course.credentialId && <dl className="course-id"><dt>Credential ID</dt><dd>{course.credentialId}</dd></dl>}
+                      {course.skills.length > 0 && <p className="course-skills">{course.skills.join(' · ')}</p>}
+                    </div>
+                  </details>
+                )}
               </article>
             </li>
           );
