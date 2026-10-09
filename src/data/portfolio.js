@@ -12,7 +12,7 @@ export const profile = {
 export const projects = [{
   title: 'PhilosoStream',
   category: 'Full-stack / AI',
-  image: 'philosostream.svg',
+  image: 'philosostream.png',
   summary: 'A note intelligence platform that turns personal knowledge into grounded answers, summaries, and recommendations.',
   points: ['Secure REST APIs, OAuth 2.0, MongoDB, Amazon S3, and Redis caching, with 42 ms average API latency.', 'RAG and recommendation pipelines using vector embeddings, semantic retrieval, Kafka, Airflow, and MLflow.', 'Asynchronous SNS/SQS/Lambda workflows and a Terraform-managed ECS architecture designed for 5,000+ concurrent sessions.'],
   technologies: ['TypeScript', 'Next.js', 'FastAPI', 'MongoDB', 'AWS', 'Terraform', 'Docker', 'GitHub Actions'],
@@ -21,7 +21,7 @@ export const projects = [{
 }, {
   title: 'Cloud & Infrastructure Homelab',
   category: 'Cloud / Infrastructure',
-  image: 'homelab.svg',
+  image: 'homelab.png',
   summary: 'A hands-on environment for running services, connecting hybrid infrastructure, and understanding how systems behave.',
   points: ['Operated 10+ virtualized and containerized services across Proxmox, AWS, and Azure.', 'Implemented network segmentation, reverse proxying, and secure remote access.', 'Centralized metrics and logs with Prometheus, Grafana, Zabbix, and Splunk.'],
   technologies: ['Linux', 'Docker', 'Proxmox', 'AWS', 'Azure', 'Nginx', 'Prometheus', 'Grafana'],
@@ -44,28 +44,28 @@ export const certifications = [{
   issuer: 'Amazon Web Services',
   date: 'August 7, 2026',
   status: 'Earned',
-  image: 'aws-ai.svg',
+  image: 'aws-ai.png',
   verification: 'https://www.credly.com/badges/64509ca1-40e6-4588-bdde-2c4cb054da61'
 }, {
   name: 'AWS Certified Cloud Practitioner',
   issuer: 'Amazon Web Services',
   date: 'August 14, 2026',
   status: 'Earned',
-  image: 'aws-cloud.svg',
+  image: 'aws-cloud.png',
   verification: 'https://www.credly.com/badges/2aa9f26a-f9d8-494f-9843-f74c6c15f6cf'
 }, {
   name: 'Microsoft Certified: GitHub Actions',
   issuer: 'Microsoft / GitHub',
   date: 'August 28, 2026',
   status: 'Earned',
-  image: 'github-actions.svg',
+  image: 'github-actions.png',
   verification: 'https://learn.microsoft.com/en-us/users/angelshrestha/credentials/ca647521ee00c033'
 }, {
   name: 'AWS Certified Solutions Architect',
   issuer: 'Amazon Web Services',
   date: 'October 23, 2026',
   status: 'In progress',
-  image: 'aws-architect.svg',
+  image: 'aws-architect.png',
   verification: ''
 }];
 export const skillCategories = [{
