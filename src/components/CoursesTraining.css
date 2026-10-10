@@ -102,7 +102,6 @@
 }
 
 .course-card-footer {
-  position: relative;
   margin-top: auto;
   padding-top: 4px;
 }
@@ -125,47 +124,16 @@
   transition: background-color 160ms ease, border-color 160ms ease;
 }
 
-.course-card-footer.has-record .course-verify {
-  position: absolute;
-  left: 0;
-  top: 4px;
-  z-index: 1;
-}
-
 .course-verify svg { width: 15px; height: 15px; }
 .course-verify:hover { background: var(--panel); border-color: var(--control-border, var(--border)); }
 
-.course-record summary {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  width: max-content;
-  min-height: 44px;
-  padding: 8px 3px;
-  color: var(--muted);
-  font-size: .76rem;
-  line-height: 1.4;
-  cursor: pointer;
-  list-style: none;
-}
-
-.has-verification .course-record summary { margin-left: 88px; }
-.course-record summary::-webkit-details-marker { display: none; }
-.course-record summary::marker { content: ''; }
-.course-record summary:hover { color: var(--accent); }
-.course-record summary > svg { width: 13px; height: 13px; transition: transform 160ms ease; }
-.course-record[open] > summary > svg { transform: rotate(180deg); }
-.course-record-body { padding-top: 10px; }
-
 .course-id {
-  margin: 0;
-  font-size: .77rem;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: .74rem;
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
-
-.course-id dt { color: var(--muted); }
-.course-id dd { margin: 2px 0 0; color: var(--text); font-family: monospace; overflow-wrap: anywhere; }
-.course-skills { margin: 7px 0 0; font-size: .78rem; line-height: 1.55; }
 
 .course-show-all {
   display: inline-flex;
@@ -203,7 +171,6 @@
 @media (prefers-reduced-motion: reduce) {
   .course-card,
   .course-verify,
-  .course-record summary > svg,
   .course-show-all,
   .course-show-all > svg { transition: none; }
 }

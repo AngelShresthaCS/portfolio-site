@@ -162,26 +162,53 @@ test('experience keeps dates and strongest accomplishments visible while preserv
   expect(screen.queryByRole('heading', { name: 'Service Desk Analyst (Tier II)' })).not.toBeInTheDocument();
 });
 
-test('skills retain their icons and complete toolkit while the additional tools start collapsed', () => {
+test('skills show a generous preview and reveal every original icon within the same six categories', () => {
   render(<App />);
-  const skills = sectionWithHeading('My toolkit');
-  const summary = within(skills).getByLabelText('More tools I work with');
-  const details = disclosureFor(summary);
-  expect(details).not.toHaveAttribute('open');
+  const skills = sectionWithHeading('Skills');
+  const toggle = within(skills).getByRole('button', { name: /View all skills/ });
+  const categories = within(skills).getAllByRole('article');
+  expect(categories).toHaveLength(6);
+  expect(within(skills).getAllByRole('heading', { level: 3 })).toHaveLength(6);
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveAttribute('aria-controls', 'toolkit-grid');
   skillCategories.forEach(category => {
-    category.skills.forEach(skill => {
-      const label = within(skills).getByText(skill);
+    const article = categories.find(candidate => within(candidate).queryByRole('heading', { name: category.title }));
+    expect(within(article).getByRole('heading', { name: category.title })).toBeVisible();
+    expect(within(article).getAllByRole('list')).toHaveLength(1);
+    expect(within(article).getAllByRole('listitem')).toHaveLength(category.featuredSkills.length);
+    expect(category.featuredSkills.length).toBeGreaterThanOrEqual(5);
+    category.featuredSkills.forEach(skill => {
+      const label = within(article).getByText(skill);
+      expect(label).toBeVisible();
       expect(iconForSkill(label)).toHaveAttribute('aria-hidden', 'true');
     });
-    category.featuredSkills.forEach(skill => expect(within(skills).getByText(skill)).toBeVisible());
     category.skills.filter(skill => !category.featuredSkills.includes(skill)).forEach(skill => {
-      expect(within(skills).getByText(skill)).not.toBeVisible();
+      expect(within(article).queryByText(skill)).not.toBeInTheDocument();
     });
   });
-  fireEvent.click(summary);
+  toggle.focus();
+  fireEvent.click(toggle);
+  expect(within(skills).getByRole('button', { name: /Show fewer skills/ })).toBe(toggle);
+  expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  expect(within(skills).getAllByRole('article')).toEqual(categories);
+  expect(within(skills).getAllByRole('heading', { level: 3 })).toHaveLength(6);
+  expect(within(skills).getAllByRole('list')).toHaveLength(6);
+  expect(within(skills).getAllByRole('listitem')).toHaveLength(51);
   skillCategories.forEach(category => {
-    category.skills.forEach(skill => expect(within(skills).getByText(skill)).toBeVisible());
+    const article = categories.find(candidate => within(candidate).queryByRole('heading', { name: category.title }));
+    category.skills.forEach(skill => {
+      const labels = within(article).getAllByText(skill);
+      expect(labels).toHaveLength(1);
+      expect(labels[0]).toBeVisible();
+      expect(iconForSkill(labels[0])).toHaveAttribute('aria-hidden', 'true');
+      expect(iconForSkill(labels[0])).toHaveAttribute('focusable', 'false');
+    });
   });
+  fireEvent.click(toggle);
+  expect(within(skills).getByRole('button', { name: /View all skills/ })).toBe(toggle);
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveFocus();
+  expect(within(skills).getAllByRole('listitem')).toHaveLength(skillCategories.reduce((count, category) => count + category.featuredSkills.length, 0));
 });
 
 test('the learning tree keeps all five branches visible and every original topic and exercise reachable', () => {
@@ -269,8 +296,8 @@ test('keeps professional credentials prominent while showing a visible four-cour
     expect(within(article).getByRole('heading', { name: course.title })).toBeVisible();
     expect(within(article).getByText(course.issuer, { selector: 'span:not([aria-hidden])' })).toBeVisible();
     expect(within(article).getByText(course.date)).toBeVisible();
-    expect(disclosureFor(within(article).getByLabelText(`${course.title} details`))).not.toHaveAttribute('open');
-    expect(within(article).getByText(course.credentialId)).not.toBeVisible();
+    expect(within(article).queryByLabelText(`${course.title} details`)).not.toBeInTheDocument();
+    expect(within(article).getByText(`Credential ID: ${course.credentialId}`)).toBeVisible();
   });
   training.slice(4).forEach(course => {
     expect(within(courses).queryByRole('heading', { name: course.title })).not.toBeInTheDocument();
@@ -287,7 +314,7 @@ test('keeps professional credentials prominent while showing a visible four-cour
   });
 });
 
-test('showing all courses preserves supplied credential links and metadata, and Show less retains focus', () => {
+test('showing all courses preserves supplied credential links and visible IDs, and Show less retains focus', () => {
   render(<App />);
   const courses = screen.getByRole('region', { name: 'Courses & training' });
   const toggle = within(courses).getByRole('button', { name: 'Show all 11' });
@@ -303,6 +330,13 @@ test('showing all courses preserves supplied credential links and metadata, and 
     expect(within(article).getByRole('heading', { name: course.title })).toBeVisible();
     expect(within(article).getByText(course.issuer, { selector: 'span:not([aria-hidden])' })).toBeVisible();
     expect(within(article).getByText(course.date)).toBeVisible();
+    expect(within(article).queryByLabelText(`${course.title} details`)).not.toBeInTheDocument();
+  });
+  training.filter(course => course.credentialId).forEach(course => {
+    expect(within(articleWithHeading(course.title)).getByText(`Credential ID: ${course.credentialId}`)).toBeVisible();
+  });
+  training.filter(course => !course.credentialId).forEach(course => {
+    expect(within(articleWithHeading(course.title)).queryByText(/^Credential ID:/)).not.toBeInTheDocument();
   });
   expect(within(courses).getAllByRole('link', { name: /^View .* credential$/ })).toHaveLength(9);
   training.filter(course => course.credentialId && course.issuer !== 'Computing Research Association').forEach(course => {
@@ -311,17 +345,9 @@ test('showing all courses preserves supplied credential links and metadata, and 
   ['UR2PhD Undergraduate Research Training Course Participant', 'Data Science Orientation'].forEach(title => {
     expect(within(courses).queryByRole('link', { name: `View ${title} credential` })).not.toBeInTheDocument();
   });
-  training.filter(course => course.credentialId || course.skills.length).forEach(course => {
-    const summary = within(courses).getByLabelText(`${course.title} details`);
-    expect(disclosureFor(summary)).not.toHaveAttribute('open');
-    fireEvent.click(summary);
-    expect(disclosureFor(summary)).toHaveAttribute('open');
-  });
-  training.filter(course => course.credentialId).forEach(course => {
-    expect(within(articleWithHeading(course.title)).getByText(course.credentialId)).toBeVisible();
-  });
+  expect(within(courses).queryByText('Details')).not.toBeInTheDocument();
   training.filter(course => course.skills.length).forEach(course => {
-    expect(within(articleWithHeading(course.title)).getByText(course.skills.join(' · '))).toBeVisible();
+    expect(within(articleWithHeading(course.title)).queryByText(course.skills.join(' · '))).not.toBeInTheDocument();
   });
   fireEvent.click(toggle);
   expect(toggle).toHaveAccessibleName('Show all 11');

@@ -177,7 +177,7 @@ function About() {
 function Projects() {
   return (
     <section id="projects">
-      <SectionTitle>A few things I’ve built</SectionTitle>
+      <SectionTitle>Projects</SectionTitle>
       <div className="project-grid">
         {projects.map((project, index) => (
           <article className="project-card" key={project.title}>
@@ -187,13 +187,15 @@ function Projects() {
               <h3>{project.title}</h3><p className="project-introduction">{project.introduction || project.summary}</p>
               <p className="project-highlight">{project.highlight || project.points[0]}</p>
               <ul className="project-stack">{(project.featuredTechnologies || project.technologies.slice(0, 4)).map(tech => <li key={tech}><SkillIcon name={tech} />{tech}</li>)}</ul>
-              {(project.github || project.demo) && <div className="project-links">{project.github && <a className="button secondary compact-button" href={project.github} target="_blank" rel="noreferrer"><FaGithub aria-hidden="true" /> Source code <FaArrowRight aria-hidden="true" /></a>}{project.demo && <a className="button primary compact-button" href={project.demo} target="_blank" rel="noreferrer">Live demo <FaArrowRight aria-hidden="true" /></a>}</div>}
-              <ContentDisclosure label="Engineering details" accessibleLabel={`${project.title}: engineering details`}>
-                <p>{project.summary}</p>
-                <ul>{project.points.map(point => <li key={point}>{point}</li>)}</ul>
-                <h4>Full stack</h4>
-                <div className="tags">{project.technologies.map(tech => <span key={tech}><SkillIcon name={tech} />{tech}</span>)}</div>
-              </ContentDisclosure>
+              <div className="project-actions">
+                {(project.github || project.demo) && <div className="project-links">{project.github && <a className="button primary compact-button" href={project.github} target="_blank" rel="noreferrer"><FaGithub aria-hidden="true" /> Source code <FaArrowRight aria-hidden="true" /></a>}{project.demo && <a className="button primary compact-button" href={project.demo} target="_blank" rel="noreferrer">Live demo <FaArrowRight aria-hidden="true" /></a>}</div>}
+                <ContentDisclosure label="Engineering details" accessibleLabel={`${project.title}: engineering details`} className="project-engineering">
+                  <p className="project-detail-summary">{project.summary}</p>
+                  <ul className="project-detail-points">{project.points.map(point => <li key={point}>{point}</li>)}</ul>
+                  <h4>Full stack</h4>
+                  <div className="tags">{project.technologies.map(tech => <span key={tech}><SkillIcon name={tech} />{tech}</span>)}</div>
+                </ContentDisclosure>
+              </div>
             </div>
           </article>
         ))}
@@ -205,7 +207,7 @@ function Projects() {
 function Experience() {
   return (
     <section id="experience">
-      <SectionTitle>My experience</SectionTitle>
+      <SectionTitle>Experience</SectionTitle>
       <div className="timeline">{experiences.map(exp => (
         <article className="experience-entry" key={exp.title}>
           <div className="experience-heading">
@@ -246,24 +248,40 @@ function Certifications() {
   );
 }
 
+const skillCategoryAccents = {
+  Languages: '#a8ccec',
+  'Backend & frameworks': '#9acfc9',
+  'AI & machine learning': '#dda9ca',
+  'Cloud & DevOps': '#e5c092',
+  'Databases & observability': '#a6ccb8',
+  'Testing & tools': '#aebcd7',
+};
+
+function SkillCategory({ category, expanded, index }) {
+  const primary = category.featuredSkills || category.skills.slice(0, 6);
+  const additional = category.skills.filter(skill => !primary.includes(skill));
+  const visibleSkills = expanded ? [...primary, ...additional] : primary;
+  const headingId = `toolkit-category-${index}`;
+
+  return (
+    <article className="skill-card" aria-labelledby={headingId} style={{ '--skill-accent': skillCategoryAccents[category.title] || 'var(--accent)' }}>
+      <h3 id={headingId}>{category.title}</h3>
+      <ul className="skill-list">{visibleSkills.map(skill => <li key={skill}><SkillIcon name={skill} /><span>{skill}</span></li>)}</ul>
+    </article>
+  );
+}
+
 function Skills() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <section id="skills">
-      <SectionTitle>My toolkit</SectionTitle>
+      <SectionTitle>Skills</SectionTitle>
       <p className="section-intro">The tools I use to build applications, run infrastructure, and understand systems.</p>
-      <div className="skills-grid">{skillCategories.map(category => (
-        <article className="skill-card" key={category.title}>
-          <h3>{category.title}</h3>
-          <ul className="skill-list">{(category.featuredSkills || category.skills.slice(0, 4)).map(skill => <li key={skill}><SkillIcon name={skill} /><span>{skill}</span></li>)}</ul>
-        </article>
-      ))}</div>
-      <ContentDisclosure label="More tools I work with" accessibleLabel="More tools I work with" className="toolkit-details">
-        <div className="skills-grid additional-skills">{skillCategories.map(category => {
-          const featured = category.featuredSkills || category.skills.slice(0, 4);
-          const additional = category.skills.filter(skill => !featured.includes(skill));
-          return additional.length > 0 && <div key={category.title}><h3>{category.title}</h3><ul className="skill-list">{additional.map(skill => <li key={skill}><SkillIcon name={skill} /><span>{skill}</span></li>)}</ul></div>;
-        })}</div>
-      </ContentDisclosure>
+      <button type="button" className="toolkit-toggle" aria-expanded={expanded} aria-controls="toolkit-grid" onClick={() => setExpanded(!expanded)}>
+        <span>{expanded ? 'Show fewer skills' : 'View all skills'}</span><FiChevronDown aria-hidden="true" />
+      </button>
+      <div id="toolkit-grid" className="skills-grid">{skillCategories.map((category, index) => <SkillCategory key={category.title} category={category} expanded={expanded} index={index} />)}</div>
     </section>
   );
 }

@@ -21,7 +21,6 @@ function IssuerMark({ issuer }) {
 function CourseCard({ course }) {
   const titleId = useId();
   const verification = getCredentialVerificationUrl(course);
-  const hasDetails = Boolean(course.credentialId || course.skills.length);
 
   return (
     <article className="course-card" aria-labelledby={titleId}>
@@ -30,18 +29,10 @@ function CourseCard({ course }) {
         <h4 id={titleId}>{course.title}</h4>
       </div>
       <p className="course-metadata"><span>{course.issuer}</span><time dateTime={course.dateTime}>{course.date}</time></p>
-      {(verification || hasDetails) && (
-        <div className={'course-card-footer' + (hasDetails ? ' has-record' : '') + (verification ? ' has-verification' : '')}>
-          {verification && <a className="course-verify" href={verification} target="_blank" rel="noreferrer" aria-label={'View ' + course.title + ' credential'}>Verify <FiArrowUpRight aria-hidden="true" /></a>}
-          {hasDetails && (
-            <details className="course-record">
-              <summary aria-label={course.title + ' details'}>Details <FiChevronDown aria-hidden="true" /></summary>
-              <div className="course-record-body">
-                {course.credentialId && <dl className="course-id"><dt>Credential ID</dt><dd>{course.credentialId}</dd></dl>}
-                {course.skills.length > 0 && <p className="course-skills">{course.skills.join(' · ')}</p>}
-              </div>
-            </details>
-          )}
+      {course.credentialId && <p className="course-id">Credential ID: {course.credentialId}</p>}
+      {verification && (
+        <div className="course-card-footer">
+          <a className="course-verify" href={verification} target="_blank" rel="noreferrer" aria-label={'View ' + course.title + ' credential'}>Verify <FiArrowUpRight aria-hidden="true" /></a>
         </div>
       )}
     </article>
@@ -73,7 +64,7 @@ export default function CoursesTraining() {
 
   return (
     <div className="course-gallery" role="region" aria-labelledby="courses-heading">
-      <div className="course-gallery-header"><h3 id="courses-heading">Courses &amp; training</h3><span className="course-count">{training.length} completed</span></div>
+      <div className="course-gallery-header"><h3 id="courses-heading">COURSES &amp; TRAINING</h3><span className="course-count">{training.length} completed</span></div>
       <p className="course-intro">Additional coursework and research training alongside my degree.</p>
       <ul id="course-grid" className="course-grid">
         {visibleCourses.map(course => <li key={course.title}><CourseCard course={course} /></li>)}

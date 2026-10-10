@@ -51,6 +51,7 @@ a:hover { color: var(--accent); }
 h1, h2, h3, h4, p, figure { margin-top: 0; }
 h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.025em; font-weight: 600; }
 h2 { font-size: var(--font-heading); max-width: 760px; margin-bottom: 0; letter-spacing: -.035em; }
+main h2 { text-transform: uppercase; }
 h3 { font-size: var(--font-card); }
 h4 { font-size: 1rem; }
 p, li { color: var(--muted); }
@@ -155,21 +156,39 @@ section { max-width: var(--content-width); margin: auto; padding: var(--section-
 .disclosure-content ul { padding-left: 18px; }
 .disclosure-content li { margin-bottom: 10px; }
 
-/* Curated work: purpose and one result first, technical depth on request. */
-.project-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--space-5); }
-.project-card { min-width: 0; }
-.project-art { overflow: hidden; border-radius: 12px; background: var(--panel); }
-.project-art img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 3; max-height: 260px; object-fit: contain; }
-.project-content { padding-top: var(--space-4); }
+/* Editorial project entries use whitespace and type, with buttons for actions. */
+#projects .section-heading { margin-bottom: 36px; }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: start; }
+.project-card { min-width: 0; padding: 24px; border: 1px solid rgba(150, 190, 225, .16); border-radius: 16px; background: var(--panel); }
+.project-art { display: flex; align-items: center; justify-content: center; aspect-ratio: 16 / 9; }
+.project-art img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 10px; }
+.project-content { padding-top: 24px; }
 .project-category { color: var(--accent); font-size: .8rem; margin-bottom: 8px; }
-.project-content h3 { font-size: 1.4rem; margin-bottom: 12px; }
-.project-introduction { font-size: .95rem; margin-bottom: 16px; }
-.project-highlight { border-left: 2px solid #65859f; padding-left: 14px; font-size: .95rem; color: var(--text); margin-bottom: 20px; }
-.project-stack, .experience-tools { display: flex; flex-wrap: wrap; gap: 8px 16px; list-style: none; padding: 0; margin: 0; }
-.project-stack li { display: inline-flex; align-items: center; gap: 7px; font-size: .85rem; }
-.project-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-.project-content > .content-disclosure { margin-top: 16px; }
-.project-content .disclosure-content { border-top: 1px solid var(--border); }
+.project-content h3 { font-size: 1.6rem; line-height: 1.3; margin-bottom: 12px; }
+.project-introduction { font-size: .95rem; margin-bottom: 18px; }
+.project-highlight { border-left: 2px solid #65859f; padding-left: 14px; font-size: .9rem; color: var(--text); margin-bottom: 20px; }
+.experience-tools { display: flex; flex-wrap: wrap; gap: 8px 16px; list-style: none; padding: 0; margin: 0; }
+.project-stack { display: flex; flex-wrap: wrap; gap: 10px 20px; list-style: none; padding: 0; margin: 0; }
+.project-stack li { display: inline-flex; align-items: center; gap: 7px; font-size: .85rem; color: var(--muted); }
+.project-stack .skill-icon { width: 14px; height: 14px; }
+.project-actions { display: flow-root; margin-top: 24px; }
+.project-links { display: flex; flex-wrap: wrap; float: left; gap: 12px; max-width: 100%; margin: 0 12px 12px 0; }
+.project-card .project-engineering { margin: 0; }
+.project-card .project-engineering > summary { display: inline-flex; vertical-align: top; width: max-content; max-width: 100%; min-height: 44px; padding: 10px 14px; border: 1px solid var(--control-border); border-radius: 9px; color: var(--accent); font-size: .875rem; font-weight: 550; transition: background-color 160ms ease, border-color 160ms ease; }
+.project-card .project-engineering > summary svg { color: var(--accent); }
+.project-card .project-engineering > summary:hover { background: var(--accent-soft); color: var(--text); border-color: var(--accent); }
+.project-card .project-engineering > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.project-card .project-engineering > summary:active { background: #263c54; }
+.project-card .project-engineering[open] > summary { border-color: var(--accent); background: var(--accent-soft); }
+.project-engineering .disclosure-content { clear: both; width: 100%; margin-top: 18px; padding-top: 20px; border-top: 1px solid var(--border); }
+.project-engineering .project-detail-summary { margin-bottom: 18px; }
+.project-engineering .project-detail-points { margin: 0; padding-left: 18px; }
+.project-engineering .project-detail-points li { padding-left: 3px; }
+.project-engineering .project-detail-points li:last-child { margin-bottom: 0; }
+.project-engineering .project-detail-points li::marker { color: var(--accent); }
+.project-engineering .disclosure-content h4 { padding-top: 18px; margin-top: 20px; border-top: 1px solid var(--border); }
+.project-engineering .tags { gap: 10px 20px; }
+.project-engineering .tags > span { border: 0; border-radius: 0; padding: 0; }
 
 /* Experience uses aligned rows rather than a date column and expanded resume bullets. */
 .timeline { max-width: 1020px; }
@@ -205,17 +224,20 @@ section { max-width: var(--content-width); margin: auto; padding: var(--section-
 .cert-status.earned { color: var(--accent); }
 .certification-card .button { align-self: flex-start; margin-top: auto; }
 
-/* Grouped lists show a useful range at a glance, with the rest in one disclosure. */
-.skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 40px; }
-.skill-card { min-width: 0; }
-.skill-card h3, .additional-skills h3 { font-size: 1rem; letter-spacing: 0; margin-bottom: 14px; }
-.skill-list { display: flex; flex-wrap: wrap; gap: 10px 16px; list-style: none; margin: 0; padding: 0; }
-.skill-list li { display: inline-flex; align-items: flex-start; gap: 8px; font-size: .875rem; line-height: 1.6; min-width: 0; }
-.skill-list .skill-icon { margin-top: 2px; }
+/* Category accents organize one editorial grid, including the expanded skills. */
+#skills .section-intro { margin-bottom: 24px; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 40px; }
+.skill-card { min-width: 0; padding-left: 18px; border-left: 2px solid var(--skill-accent, var(--accent)); }
+.skill-card h3 { color: var(--skill-accent, var(--accent)); font-size: 1.05rem; line-height: 1.5; letter-spacing: 0; margin-bottom: 16px; }
+.skill-list { display: flex; flex-wrap: wrap; gap: 12px 18px; list-style: none; margin: 0; padding: 0; }
+.skill-list li { display: inline-flex; align-items: flex-start; gap: 8px; max-width: 100%; font-size: .9rem; line-height: 1.65; color: var(--text); min-width: 0; }
+.skill-list .skill-icon { width: 16px; height: 16px; margin-top: 3px; color: var(--skill-accent, var(--accent)); }
 .skill-list li span { overflow-wrap: anywhere; }
-.toolkit-details { margin-top: 28px; }
-.toolkit-details > summary { justify-content: flex-start; gap: 14px; }
-.additional-skills { padding-top: 16px; }
+.toolkit-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; margin-bottom: 28px; padding: 14px 18px; border: 1px solid var(--control-border); border-radius: 10px; background: var(--accent-soft); color: var(--text); font-size: .95rem; font-weight: 600; text-align: left; cursor: pointer; transition: background-color 160ms ease, border-color 160ms ease; }
+.toolkit-toggle:hover { background: #263c54; border-color: var(--accent); }
+.toolkit-toggle:active { background: #2d465f; }
+.toolkit-toggle > svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent); transition: transform 160ms ease; }
+.toolkit-toggle[aria-expanded='true'] > svg { transform: rotate(180deg); }
 
 .leetcode-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: var(--space-6); }
 .leetcode-copy { max-width: 50ch; }
@@ -285,9 +307,11 @@ section { max-width: var(--content-width); margin: auto; padding: var(--section-
   .hero-visual { max-width: 260px; }
   .visual-caption { margin-top: 8px; }
   .about-layout, .project-grid, .contact-layout, .leetcode-layout { grid-template-columns: 1fr; gap: 28px; }
-  .project-art img { max-height: 300px; object-fit: contain; }
-  .project-content h3 { font-size: 1.3rem; }
-  .project-content > .content-disclosure { margin-top: 12px; }
+  #projects .section-heading { margin-bottom: 28px; }
+  .project-grid { gap: 40px; }
+  .project-card { padding: 20px; }
+  .project-content { padding-top: 20px; }
+  .project-content h3 { font-size: 1.45rem; }
   .experience-position h3 { font-size: 1.08rem; }
   .experience-body { margin-left: 0; }
   .section-heading { margin-bottom: 24px; }
@@ -296,12 +320,12 @@ section { max-width: var(--content-width); margin: auto; padding: var(--section-
 @media (max-width: 600px) {
   .brand span { display: none; }
   .header-inner { gap: 10px; }
+  .skills-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 @media (max-width: 480px) {
   .certification-grid { grid-template-columns: 1fr; }
   .certification-card + .certification-card { border-left: 0; border-top: 1px solid var(--border); }
   .certification-card { padding: 24px; }
-  .skills-grid { grid-template-columns: 1fr; gap: 24px; }
   .site-footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 22px; }
   .education-card, .resume-card { padding: 22px; }
   .education-card .organization-logo { width: 48px; height: 48px; }

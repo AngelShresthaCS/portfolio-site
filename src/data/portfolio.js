@@ -120,27 +120,27 @@ export const certifications = [{
 }];
 export const skillCategories = [{
   title: 'Languages',
-  featuredSkills: ['Python', 'TypeScript', 'JavaScript', 'C/C++'],
+  featuredSkills: ['Python', 'TypeScript', 'JavaScript', 'C/C++', 'Go', 'SQL'],
   skills: ['Python', 'C/C++', 'C#', 'Go', 'TypeScript', 'JavaScript', 'Java', 'SQL', 'Bash']
 }, {
   title: 'Backend & frameworks',
-  featuredSkills: ['FastAPI', '.NET / ASP.NET Core', 'Node.js', 'REST APIs'],
+  featuredSkills: ['FastAPI', '.NET / ASP.NET Core', 'Node.js', 'REST APIs', 'Next.js', 'Redis'],
   skills: ['FastAPI', '.NET / ASP.NET Core', 'Node.js', 'Next.js', 'REST APIs', 'gRPC', 'Apache Kafka', 'Redis', 'Microservices']
 }, {
   title: 'AI & machine learning',
-  featuredSkills: ['PyTorch', 'RAG', 'LLMs', 'Vector search'],
+  featuredSkills: ['PyTorch', 'RAG', 'LLMs', 'Vector search', 'Embeddings', 'OpenAI / Anthropic APIs'],
   skills: ['PyTorch', 'RAG', 'LLMs', 'Embeddings', 'Vector search', 'Amazon Bedrock', 'OpenAI / Anthropic APIs', 'MCP', 'Claude Code']
 }, {
   title: 'Cloud & DevOps',
-  featuredSkills: ['AWS: ECS, Lambda, S3, SQS, SNS, EC2', 'Azure', 'Docker', 'Terraform'],
+  featuredSkills: ['AWS: ECS, Lambda, S3, SQS, SNS, EC2', 'Azure', 'Docker', 'Terraform', 'Linux', 'GitHub Actions'],
   skills: ['AWS: ECS, Lambda, S3, SQS, SNS, EC2', 'Azure', 'Docker', 'Kubernetes', 'Terraform', 'Linux', 'GitHub Actions']
 }, {
   title: 'Databases & observability',
-  featuredSkills: ['PostgreSQL', 'MongoDB', 'Prometheus', 'Grafana'],
+  featuredSkills: ['PostgreSQL', 'MongoDB', 'Prometheus', 'Grafana', 'MySQL', 'DynamoDB'],
   skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'DynamoDB', 'Prometheus', 'Grafana', 'Splunk', 'PagerDuty']
 }, {
   title: 'Testing & tools',
-  featuredSkills: ['Git', 'pytest', 'Jest', 'Playwright'],
+  featuredSkills: ['Git', 'pytest', 'Jest', 'Playwright', 'Unit testing', 'Integration testing'],
   skills: ['Git', 'CMake', 'pytest', 'GoogleTest', 'Jest', 'Playwright', 'k6', 'Unit testing', 'Integration testing']
 }];
 export const coursework = ['Data Structures & Algorithms', 'Databases', 'Intro to Software Engineering', 'Programming Languages', 'Operating Systems', 'Object-Oriented Programming'];
