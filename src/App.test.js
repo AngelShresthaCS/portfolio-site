@@ -184,31 +184,62 @@ test('skills retain their icons and complete toolkit while the additional tools 
   });
 });
 
-test('the planned roadmap shows stage milestones and retains every topic and exercise in collapsed details', () => {
+test('the learning tree keeps all five branches visible and every original topic and exercise reachable', () => {
   render(<App />);
-  const roadmap = screen.getByRole('region', { name: 'My learning roadmap' });
-  expect(roadmap).toHaveTextContent('What I want to explore next');
-  const stages = within(roadmap).getAllByRole('article');
-  expect(stages).toHaveLength(3);
-  roadmapPhases.forEach((phase, index) => {
-    const stage = stages[index];
-    const summary = within(stage).getByLabelText(/^Topics and exercises for/);
-    const details = disclosureFor(summary);
-    expect(within(stage).getByRole('heading', { level: 3 })).toBeVisible();
-    const milestones = within(stage).getAllByRole('list')[0];
-    expect(within(milestones).getAllByRole('listitem')).toHaveLength(3);
-    expect(details).not.toHaveAttribute('open');
-    phase.steps.forEach(step => {
-      expect(within(details).getByRole('heading', { name: step.title, hidden: true })).not.toBeVisible();
-      expect(within(details).getByText(step.topics.join(' · '))).not.toBeVisible();
-      expect(within(details).getByText(step.practice)).not.toBeVisible();
-    });
-    fireEvent.click(summary);
-    phase.steps.forEach(step => {
-      expect(within(details).getByRole('heading', { name: step.title })).toBeVisible();
-      expect(within(details).getByText(step.practice)).toBeVisible();
+  const roadmap = screen.getByRole('region', { name: 'Learning roadmap' });
+  expect(within(roadmap).getAllByRole('article')).toHaveLength(5);
+  ['Backend', 'Database & data', 'Cloud & DevOps', 'AI & distributed systems', 'Reliability'].forEach(branch => {
+    expect(within(roadmap).getByRole('heading', { level: 3, name: branch })).toBeVisible();
+  });
+  expect(within(roadmap).queryByRole('heading', { name: 'Frontend' })).not.toBeInTheDocument();
+  const buttons = within(roadmap).getAllByRole('button', { name: /^Explore / });
+  expect(buttons).toHaveLength(16);
+  expect(new Set(buttons.map(button => button.getAttribute('aria-controls'))).size).toBe(16);
+  expect(within(roadmap).queryByRole('region')).not.toBeInTheDocument();
+  buttons.forEach(button => expect(button).toHaveAttribute('aria-expanded', 'false'));
+
+  roadmapPhases.flatMap(phase => phase.steps).forEach(step => {
+    const button = within(roadmap).getByRole('button', { name: `Explore ${step.title}` });
+    fireEvent.click(button);
+    const panel = within(roadmap).getByRole('region', { name: step.title });
+    expect(within(roadmap).getAllByRole('region')).toHaveLength(1);
+    expect(panel).toHaveAttribute('id', button.getAttribute('aria-controls'));
+    expect(within(panel).getByRole('heading', { level: 4, name: step.title })).toBeVisible();
+    step.topics.forEach(topic => expect(within(panel).getByText(topic)).toBeVisible());
+    expect(within(panel).getByText(step.practice)).toBeVisible();
+    buttons.forEach(node => {
+      expect(node).toHaveAttribute('aria-expanded', String(node === button));
     });
   });
+});
+
+test('learning topic details switch, toggle closed, and restore node focus after Close or Escape', () => {
+  render(<App />);
+  const roadmap = screen.getByRole('region', { name: 'Learning roadmap' });
+  const firstTopic = roadmapPhases[0].steps[0].title;
+  const secondTopic = roadmapPhases[1].steps[0].title;
+  const first = within(roadmap).getByRole('button', { name: `Explore ${firstTopic}` });
+  const second = within(roadmap).getByRole('button', { name: `Explore ${secondTopic}` });
+  fireEvent.click(first);
+  expect(within(roadmap).getByRole('region', { name: firstTopic })).toBeVisible();
+  fireEvent.click(second);
+  expect(within(roadmap).queryByRole('region', { name: firstTopic })).not.toBeInTheDocument();
+  expect(first).toHaveAttribute('aria-expanded', 'false');
+  expect(second).toHaveAttribute('aria-expanded', 'true');
+  expect(within(roadmap).getByRole('region', { name: secondTopic })).toBeVisible();
+
+  fireEvent.click(within(roadmap).getByRole('button', { name: 'Close topic details' }));
+  expect(within(roadmap).queryByRole('region')).not.toBeInTheDocument();
+  expect(second).toHaveAttribute('aria-expanded', 'false');
+  expect(second).toHaveFocus();
+  fireEvent.click(second);
+  fireEvent.keyDown(second, { key: 'Escape' });
+  expect(within(roadmap).queryByRole('region')).not.toBeInTheDocument();
+  expect(second).toHaveFocus();
+  fireEvent.click(second);
+  fireEvent.click(second);
+  expect(second).toHaveAttribute('aria-expanded', 'false');
+  expect(within(roadmap).queryByRole('region')).not.toBeInTheDocument();
 });
 
 test('failed contact submissions retain the message and offer direct email', async () => {
@@ -223,38 +254,84 @@ test('failed contact submissions retain the message and offer direct email', asy
   delete global.fetch;
 });
 
-test('keeps professional credentials prominent and includes the supplied course completions separately', () => {
+test('keeps professional credentials prominent while showing a visible four-course preview', () => {
   render(<App />);
-  const courses = disclosureFor(screen.getByText('Courses & training'));
-  expect(courses).not.toHaveAttribute('open');
-  expect(within(courses).getByText('11 completed')).toBeInTheDocument();
-  expect(within(courses).getAllByRole('article', { hidden: true })).toHaveLength(11);
-  expect(within(courses).getByText('7F7TDA5Q2A0J')).not.toBeVisible();
-  expect(within(courses).getByText('40294036106007')).toBeInTheDocument();
-  expect(within(courses).getByRole('link', { name: 'View React Basics credential', hidden: true })).toHaveAttribute('href', 'https://www.coursera.org/account/accomplishments/verify/O05MCEG33UGA');
-  expect(within(courses).getAllByRole('link', { name: /^View .* credential$/, hidden: true })).toHaveLength(9);
-  expect(within(courses).getByRole('link', { name: 'View Monitoring and Observability for Development and DevOps credential', hidden: true })).toHaveAttribute('href', 'https://www.coursera.org/account/accomplishments/verify/7F7TDA5Q2A0J');
-  expect(within(courses).queryByRole('link', { name: 'View UR2PhD Undergraduate Research Training Course Participant credential', hidden: true })).not.toBeInTheDocument();
-  expect(within(courses).queryByRole('link', { name: 'View Data Science Orientation credential', hidden: true })).not.toBeInTheDocument();
-  certifications.forEach(certification => {
-    expect(screen.getByRole('heading', { name: certification.name })).toBeVisible();
-  });
-
-  fireEvent.click(within(courses).getByText('Courses & training'));
-  training.forEach(course => {
+  const courses = screen.getByRole('region', { name: 'Courses & training' });
+  expect(within(courses).getByRole('heading', { level: 3, name: 'Courses & training' })).toBeVisible();
+  expect(within(courses).getByText('11 completed')).toBeVisible();
+  expect(within(courses).getAllByRole('article')).toHaveLength(4);
+  const toggle = within(courses).getByRole('button', { name: 'Show all 11' });
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveAttribute('aria-controls', 'course-grid');
+  expect(within(courses).getByRole('list')).toHaveAttribute('id', 'course-grid');
+  training.slice(0, 4).forEach(course => {
     const article = articleWithHeading(course.title);
+    expect(within(article).getByRole('heading', { name: course.title })).toBeVisible();
     expect(within(article).getByText(course.issuer, { selector: 'span:not([aria-hidden])' })).toBeVisible();
     expect(within(article).getByText(course.date)).toBeVisible();
+    expect(disclosureFor(within(article).getByLabelText(`${course.title} details`))).not.toHaveAttribute('open');
+    expect(within(article).getByText(course.credentialId)).not.toBeVisible();
+  });
+  training.slice(4).forEach(course => {
+    expect(within(courses).queryByRole('heading', { name: course.title })).not.toBeInTheDocument();
+  });
+  expect(within(courses).getAllByRole('link', { name: /^View .* credential$/ })).toHaveLength(3);
+  training.slice(0, 3).forEach(course => {
+    expect(within(courses).getByRole('link', { name: `View ${course.title} credential` })).toHaveAttribute('href', `https://www.coursera.org/account/accomplishments/verify/${course.credentialId}`);
+  });
+  expect(within(articleWithHeading(training[3].title)).queryByRole('link')).not.toBeInTheDocument();
+  certifications.forEach(certification => {
+    const article = articleWithHeading(certification.name);
+    expect(within(article).getByRole('heading', { name: certification.name })).toBeVisible();
+    expect(within(article).getByText(certification.status)).toBeVisible();
+  });
+});
+
+test('showing all courses preserves supplied credential links and metadata, and Show less retains focus', () => {
+  render(<App />);
+  const courses = screen.getByRole('region', { name: 'Courses & training' });
+  const toggle = within(courses).getByRole('button', { name: 'Show all 11' });
+  toggle.focus();
+  fireEvent.click(toggle);
+  expect(within(courses).getByRole('button', { name: 'Show less' })).toBe(toggle);
+  expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  expect(toggle).toHaveAttribute('aria-controls', 'course-grid');
+  expect(toggle).toHaveFocus();
+  expect(within(courses).getAllByRole('article')).toHaveLength(11);
+  training.forEach(course => {
+    const article = articleWithHeading(course.title);
+    expect(within(article).getByRole('heading', { name: course.title })).toBeVisible();
+    expect(within(article).getByText(course.issuer, { selector: 'span:not([aria-hidden])' })).toBeVisible();
+    expect(within(article).getByText(course.date)).toBeVisible();
+  });
+  expect(within(courses).getAllByRole('link', { name: /^View .* credential$/ })).toHaveLength(9);
+  training.filter(course => course.credentialId && course.issuer !== 'Computing Research Association').forEach(course => {
+    expect(within(courses).getByRole('link', { name: `View ${course.title} credential` })).toHaveAttribute('href', course.verification || `https://www.coursera.org/account/accomplishments/verify/${course.credentialId}`);
+  });
+  ['UR2PhD Undergraduate Research Training Course Participant', 'Data Science Orientation'].forEach(title => {
+    expect(within(courses).queryByRole('link', { name: `View ${title} credential` })).not.toBeInTheDocument();
   });
   training.filter(course => course.credentialId || course.skills.length).forEach(course => {
     const summary = within(courses).getByLabelText(`${course.title} details`);
     expect(disclosureFor(summary)).not.toHaveAttribute('open');
+    fireEvent.click(summary);
+    expect(disclosureFor(summary)).toHaveAttribute('open');
   });
-  const monitoring = articleWithHeading(training[0].title);
-  expect(within(monitoring).getByRole('link', { name: `View ${training[0].title} credential` })).toBeVisible();
-  fireEvent.click(within(monitoring).getByLabelText(`${training[0].title} details`));
-  expect(within(monitoring).getByText('7F7TDA5Q2A0J')).toBeVisible();
-  expect(within(monitoring).getByText('Instana · System Monitoring')).toBeVisible();
+  training.filter(course => course.credentialId).forEach(course => {
+    expect(within(articleWithHeading(course.title)).getByText(course.credentialId)).toBeVisible();
+  });
+  training.filter(course => course.skills.length).forEach(course => {
+    expect(within(articleWithHeading(course.title)).getByText(course.skills.join(' · '))).toBeVisible();
+  });
+  fireEvent.click(toggle);
+  expect(toggle).toHaveAccessibleName('Show all 11');
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveFocus();
+  expect(within(courses).getAllByRole('article')).toHaveLength(4);
+  expect(within(courses).getAllByRole('link', { name: /^View .* credential$/ })).toHaveLength(3);
+  training.slice(4).forEach(course => {
+    expect(within(courses).queryByRole('heading', { name: course.title })).not.toBeInTheDocument();
+  });
 });
 
 test('restores the LeetCode stats card and keeps the profile reachable if the image fails', () => {

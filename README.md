@@ -46,7 +46,7 @@ Use a dark, low-contrast image so the text remains readable. Keep `none` for the
 
 ## Learning roadmap
 
-Edit `src/data/roadmap.js` to change the three phases, sixteen topics, and practice exercises. This is a learning plan, not a list of completed achievements. Each stage shows its goal and grouped milestones immediately, with all original topics and exercises in an initially closed native disclosure. Milestone groupings are defined in `src/components/Roadmap.js`.
+Edit `src/data/roadmap.js` for the learning plan. `roadmapPhases` preserves the original sixteen topics and exercises; `roadmapBranches` groups those same steps into five color-coded branches: Backend, Database & data, Cloud & DevOps, AI & distributed systems, and Reliability. Choose a topic node to open an inline panel with its original topics and exercise. Nodes use native buttons for keyboard access; Escape or the close button closes the panel and returns focus to the selected node. This is a learning plan, not a list of completed achievements.
 
 Navigation highlights the section in view. Skills, LeetCode, and Roadmap share the More menu; its indicator also highlights while a secondary section is in view. The mobile menu closes on section selection or Escape. Escape first closes an open More menu and returns focus to its summary. Motion respects the device's reduced-motion preference.
 
@@ -58,7 +58,7 @@ Skill `featuredSkills` fields select the compact category overviews. Remaining s
 
 ## Courses and training
 
-Professional certifications remain prominent. Eleven additional course and research-training completions appear in the expandable "Courses & training" archive below them. Compact rows show the provider, date, and verification link; each row's Details disclosure holds the supplied credential ID and skills. Edit `src/data/training.js` for titles, issuers, completion dates, credential IDs, skills, and verification links.
+Professional certifications remain prominent. The secondary "Courses & training" gallery shows four compact credential cards immediately; Show all 11 reveals the remaining completions, and Show less restores the preview. Cards show the colored provider mark, title, provider, completion date, and verification link when available. Each card's quiet Details disclosure holds the supplied credential ID and skills. Edit `src/data/training.js` for course content and `src/components/CoursesTraining.css` for the gallery's styling.
 
 Course IDs with 12 uppercase letters/numbers, including at least one of each, automatically link to `https://www.coursera.org/account/accomplishments/verify/{credentialId}`. Other ID formats and missing IDs do not generate a link. An explicit `verification` URL takes precedence. IDs are displayed as supplied; matching the format generates a link but does not confirm that the certificate is valid.
 

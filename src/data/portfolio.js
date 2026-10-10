@@ -38,15 +38,20 @@ export const projects = [{
   demo: ''
 }];
 export const experiences = [{
-  title: 'Student Technical Assistant — Network Operations',
+  title: 'Student Technical Assistant | Network Operations',
   company: 'Office of Information Technology, University of Texas at Arlington',
   logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDt9hqztJ9DS6D4YwpPTzsiu5e8N6kgdADB-gLJ3BL1DfzwxTDo-8auITc&s=10',
   logoAlt: 'UTA Office of Information Technology logo',
-  period: 'February 2026 – Present',
+  period: 'Feb. 2026 – Present',
+  location: 'Arlington, TX',
   summary: 'Support hybrid Azure and on-premises infrastructure through observability, incident response, and automation.',
-  highlights: ['Maintain a 90%+ same-day resolution rate for cross-functional escalations.', 'Build JavaScript automation for Tier 1 support workflows.'],
-  tools: ['Azure', 'Linux', 'Grafana', 'Splunk'],
-  points: ['Manage observability and incident response across hybrid Azure and on-premises infrastructure with Zabbix, Grafana, Splunk, and PagerDuty; maintain a 90%+ same-day resolution rate for cross-functional escalations.', 'Diagnose Linux, application, and network incidents through centralized logs and telemetry, and evaluate production changes through Change Advisory Board processes.', 'Build browser-based JavaScript automation that reduces repetitive workflows for Tier 1 support teams.']
+  highlights: ['Maintained a 90%+ same-day resolution rate for cross-functional escalations.', 'Engineered JavaScript automation to reduce repetitive manual work for Tier 1 support teams.'],
+  tools: ['Azure', 'Linux', 'Zabbix', 'Grafana', 'Splunk', 'PagerDuty', 'JavaScript'],
+  points: [
+    'Managed observability and incident-response workflows across hybrid Azure/on-prem infrastructure using Zabbix, Grafana, Splunk, and PagerDuty; maintained a 90%+ same-day resolution rate for cross-functional escalations.',
+    'Diagnosed Linux, application, and network infrastructure incidents through centralized log analysis and system telemetry; evaluated production changes through Change Advisory Board (CAB) processes.',
+    'Engineered browser-based JavaScript automation for internal operational workflows, reducing repetitive manual processes for Tier 1 support teams.'
+  ]
 }, {
   // Completed role and dates retained from the original portfolio's experience data.
   title: 'Service Desk Analyst (Tier I)',
@@ -54,10 +59,17 @@ export const experiences = [{
   logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDt9hqztJ9DS6D4YwpPTzsiu5e8N6kgdADB-gLJ3BL1DfzwxTDo-8auITc&s=10',
   logoAlt: 'UTA Office of Information Technology logo',
   period: 'June 2025 – December 2025',
-  summary: 'Supported campus infrastructure through Linux, Windows, and network troubleshooting.',
-  highlights: ['Diagnosed connectivity and uptime issues using TCP/IP and system-level troubleshooting.', 'Developed internal JavaScript automation to reduce manual work.'],
-  tools: ['Linux', 'Windows', 'JavaScript', 'TCP/IP'],
-  points: ['Supported mission-critical campus infrastructure by diagnosing and resolving hardware, software, and networking issues across Linux and Windows systems.', 'Diagnosed connectivity and uptime issues using TCP/IP fundamentals and system-level troubleshooting.', 'Developed internal JavaScript automation to streamline operational workflows and reduce manual effort.']
+  summary: 'Automated support workflows and managed campus access, provisioning, and service operations.',
+  highlights: ['Automated MFA resets with JavaScript to eliminate redundant steps and reduce Tier 1 ticket resolution time.', 'Managed account lifecycles and led daily service operations, including approvals and audits of escalated access requests.'],
+  tools: ['JavaScript', 'Active Directory', 'Microsoft Entra ID', 'Microsoft 365 Admin Center', 'MFA'],
+  points: [
+    'Process Automation: Developed a JavaScript automation script to streamline Multi-Factor Authentication (MFA) resets, eliminating redundant manual steps and significantly reducing ticket resolution time for Tier 1 IT Analysts.',
+    'Identity & Access Management (IAM): Managed the full account lifecycle using Active Directory, Microsoft Entra ID, and the Microsoft 365 Admin Center, handling high-privilege provisioning and enforcing strict data confidentiality protocols.',
+    'Team Leadership & Approvals: Directed daily service operations as a Team Lead, evaluating, approving, and auditing escalated access requests and application permissions for the university.',
+    'Enterprise Software Provisioning: Administered and granted secure access to complex, organizational-level software suites and engineering applications, including MATLAB, SolidWorks, and Ansys.',
+    'Systems Troubleshooting: Diagnosed and resolved hardware, wireless, and software infrastructure issues across multiple platforms, including Canvas LMS, internal databases, and enterprise printing systems (Pharos).',
+    'Technical Documentation: Authored and maintained comprehensive knowledge base articles and Standard Operating Procedures (SOPs) to standardize IT business analysis and streamline the troubleshooting process.'
+  ]
 }, {
   title: 'Undergraduate Research Assistant',
   company: 'University of Texas at Arlington',

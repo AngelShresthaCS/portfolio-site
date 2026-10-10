@@ -122,3 +122,100 @@ export const roadmapPhases = [
     ],
   },
 ];
+
+// Branches reorganize the existing learning plan for the interactive tree.
+// Node details reference the original step object, so topics and exercises
+// continue to have one source of truth and do not imply completed learning.
+const roadmapStepLookup = new Map(
+  roadmapPhases.flatMap(phase => phase.steps.map(step => [
+    step.number,
+    { step, phaseTitle: phase.title },
+  ])),
+);
+
+function makeTopic(number, title, icon, focusIndices, description) {
+  const { step, phaseTitle } = roadmapStepLookup.get(number);
+  return {
+    id: `topic-${number}`,
+    title,
+    focus: focusIndices.map(index => step.topics[index]).join(' · '),
+    icon,
+    description,
+    step,
+    phaseTitle,
+  };
+}
+
+export const roadmapBranches = [
+  {
+    id: 'backend',
+    title: 'Backend',
+    description: 'APIs, caching, tests, and architecture.',
+    icon: 'FiServer',
+    accent: '#a8ccec',
+    tint: '#152535',
+    connector: '#456078',
+    nodes: [
+      makeTopic('01', 'Backend APIs', 'FiServer', [0, 2], 'Authentication, API design, and migrations shape a reliable service.'),
+      makeTopic('02', 'Redis caching', 'FiZap', [0, 2], 'Cache expiration and rate limits keep sessions responsive and controlled.'),
+      makeTopic('03', 'Testing', 'FiCheckCircle', [0, 2], 'Unit tests, integration tests, and fixtures check service behavior.'),
+      makeTopic('08', 'Design patterns', 'FiLayers', [0, 1], 'SOLID, dependency injection, and separation of concerns keep responsibilities clear.'),
+    ],
+  },
+  {
+    id: 'database-data',
+    title: 'Database & data',
+    description: 'Models, relationships, and semantic search.',
+    icon: 'FiDatabase',
+    accent: '#c1ade6',
+    tint: '#231e34',
+    connector: '#65577b',
+    nodes: [
+      makeTopic('09', 'NoSQL databases', 'FiDatabase', [0, 1], 'Access patterns guide models for documents, user settings, and event logs.'),
+      makeTopic('11', 'Graph databases', 'FiShare2', [0, 2], 'Relationships and Cypher make connected application data queryable.'),
+      makeTopic('13', 'Vector search', 'FiSearch', [1, 3], 'Similarity search, indexing, and hybrid search connect queries with relevant documents.'),
+    ],
+  },
+  {
+    id: 'cloud-devops',
+    title: 'Cloud & DevOps',
+    description: 'Containers, delivery, and cloud deployment.',
+    icon: 'FiCloud',
+    accent: '#e5c092',
+    tint: '#2c241b',
+    connector: '#77644d',
+    nodes: [
+      makeTopic('04', 'Containers', 'FiBox', [0, 1], 'Dockerfiles, Compose, and networks define how local services run together.'),
+      makeTopic('05', 'GitHub Actions', 'FiGitBranch', [0, 1], 'Workflows connect automated tests, image builds, and deployments.'),
+      makeTopic('06', 'AWS deployment', 'FiCloud', [1, 3], 'Compute, storage, IAM, and CloudWatch connect deployment with access and visibility.'),
+    ],
+  },
+  {
+    id: 'ai-distributed-systems',
+    title: 'AI & distributed systems',
+    description: 'Events, retrieval, and tool-using assistants.',
+    icon: 'FiCpu',
+    accent: '#dda9ca',
+    tint: '#2b1e2b',
+    connector: '#775870',
+    nodes: [
+      makeTopic('10', 'Kafka streaming', 'FiGitMerge', [0, 3], 'Topics, partitions, producers, and consumer groups organize event flow.'),
+      makeTopic('12', 'LLM fundamentals', 'FiMessageSquare', [0, 3], 'Tokens, context windows, prompting, and embeddings shape model inputs and responses.'),
+      makeTopic('14', 'RAG', 'FiSearch', [0, 1], 'Chunking, retrieval, and context injection connect answers to source documents.'),
+      makeTopic('15', 'AI agents & tools', 'FiTool', [0, 3], 'Memory and planning organize tool use within explicit permission boundaries.'),
+    ],
+  },
+  {
+    id: 'reliability',
+    title: 'Reliability',
+    description: 'Performance, traces, and service health.',
+    icon: 'FiActivity',
+    accent: '#a6ccb8',
+    tint: '#192923',
+    connector: '#4f6b5e',
+    nodes: [
+      makeTopic('07', 'Concurrency', 'FiSliders', [0, 3], 'Async Python and connection pools help explain limits on service throughput.'),
+      makeTopic('16', 'Observability', 'FiActivity', [0, 3], 'Metrics, logs, and traces help explain service failures and latency.'),
+    ],
+  },
+];

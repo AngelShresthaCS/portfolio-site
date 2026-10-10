@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId, useRef, useState } from 'react';
 import { FaGraduationCap } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { FiArrowUpRight, FiChevronDown } from 'react-icons/fi';
@@ -15,41 +15,74 @@ function IssuerMark({ issuer }) {
     'Credly by Pearson': { Icon: SiCredly, className: 'course-provider-credly' },
   };
   const { Icon, className } = marks[issuer] || { Icon: FaGraduationCap, className: 'course-provider-research' };
-  return <span className={`course-provider-mark ${className}`} aria-hidden="true"><Icon /></span>;
+  return <span className={'course-provider-mark ' + className} aria-hidden="true"><Icon /></span>;
+}
+
+function CourseCard({ course }) {
+  const titleId = useId();
+  const verification = getCredentialVerificationUrl(course);
+  const hasDetails = Boolean(course.credentialId || course.skills.length);
+
+  return (
+    <article className="course-card" aria-labelledby={titleId}>
+      <div className="course-card-heading">
+        <IssuerMark issuer={course.issuer} />
+        <h4 id={titleId}>{course.title}</h4>
+      </div>
+      <p className="course-metadata"><span>{course.issuer}</span><time dateTime={course.dateTime}>{course.date}</time></p>
+      {(verification || hasDetails) && (
+        <div className={'course-card-footer' + (hasDetails ? ' has-record' : '') + (verification ? ' has-verification' : '')}>
+          {verification && <a className="course-verify" href={verification} target="_blank" rel="noreferrer" aria-label={'View ' + course.title + ' credential'}>Verify <FiArrowUpRight aria-hidden="true" /></a>}
+          {hasDetails && (
+            <details className="course-record">
+              <summary aria-label={course.title + ' details'}>Details <FiChevronDown aria-hidden="true" /></summary>
+              <div className="course-record-body">
+                {course.credentialId && <dl className="course-id"><dt>Credential ID</dt><dd>{course.credentialId}</dd></dl>}
+                {course.skills.length > 0 && <p className="course-skills">{course.skills.join(' · ')}</p>}
+              </div>
+            </details>
+          )}
+        </div>
+      )}
+    </article>
+  );
 }
 
 export default function CoursesTraining() {
+  const [expanded, setExpanded] = useState(false);
+  const toggleRef = useRef(null);
+  const visibleCourses = expanded ? training : training.slice(0, 4);
+
+  function toggleCourses() {
+    if (!expanded) {
+      setExpanded(true);
+      return;
+    }
+
+    toggleRef.current?.focus({ preventScroll: true });
+    setExpanded(false);
+    window.requestAnimationFrame(() => {
+      const toggle = toggleRef.current;
+      if (!toggle || typeof toggle.scrollIntoView !== 'function') return;
+      const bounds = toggle.getBoundingClientRect();
+      if (bounds.top < 0 || bounds.bottom > window.innerHeight) {
+        toggle.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+      }
+    });
+  }
+
   return (
-    <details className="course-archive">
-      <summary className="course-archive-toggle"><span>Courses &amp; training</span><span className="course-count">{training.length} completed</span><FiChevronDown aria-hidden="true" /></summary>
+    <div className="course-gallery" role="region" aria-labelledby="courses-heading">
+      <div className="course-gallery-header"><h3 id="courses-heading">Courses &amp; training</h3><span className="course-count">{training.length} completed</span></div>
       <p className="course-intro">Additional coursework and research training alongside my degree.</p>
-      <ul className="course-list">
-        {training.map(course => {
-          const verification = getCredentialVerificationUrl(course);
-          const hasDetails = Boolean(course.credentialId || course.skills.length);
-          return (
-            <li key={course.title}>
-              <article className="course-entry">
-                <IssuerMark issuer={course.issuer} />
-                <div className="course-entry-copy">
-                  <h3>{course.title}</h3>
-                  <p className="course-metadata"><span>{course.issuer}</span><span aria-hidden="true">·</span><time dateTime={course.dateTime}>{course.date}</time></p>
-                </div>
-                {verification && <a className="course-verify" href={verification} target="_blank" rel="noreferrer" aria-label={`View ${course.title} credential`}>Verify <FiArrowUpRight aria-hidden="true" /></a>}
-                {hasDetails && (
-                  <details className="course-record">
-                    <summary aria-label={`${course.title} details`}>Details <FiChevronDown aria-hidden="true" /></summary>
-                    <div className="course-record-body">
-                      {course.credentialId && <dl className="course-id"><dt>Credential ID</dt><dd>{course.credentialId}</dd></dl>}
-                      {course.skills.length > 0 && <p className="course-skills">{course.skills.join(' · ')}</p>}
-                    </div>
-                  </details>
-                )}
-              </article>
-            </li>
-          );
-        })}
+      <ul id="course-grid" className="course-grid">
+        {visibleCourses.map(course => <li key={course.title}><CourseCard course={course} /></li>)}
       </ul>
-    </details>
+      {training.length > 4 && (
+        <button ref={toggleRef} type="button" className="course-show-all" aria-expanded={expanded} aria-controls="course-grid" onClick={toggleCourses}>
+          {expanded ? 'Show less' : 'Show all ' + training.length} <FiChevronDown aria-hidden="true" />
+        </button>
+      )}
+    </div>
   );
 }

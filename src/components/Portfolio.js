@@ -210,7 +210,7 @@ function Experience() {
         <article className="experience-entry" key={exp.title}>
           <div className="experience-heading">
             <PortfolioImage className="organization-logo" source={exp.logo} fallback="company-logo.svg" alt={exp.logoAlt || `${exp.company} logo`} width="48" height="48" loading="lazy" />
-            <div className="experience-position"><h3>{exp.title}</h3><p>{exp.company}</p></div>
+            <div className="experience-position"><h3>{exp.title}</h3><p>{exp.company}{exp.location ? ` · ${exp.location}` : ''}</p></div>
             <p className="experience-date">{exp.period}</p>
           </div>
           <div className="experience-body">

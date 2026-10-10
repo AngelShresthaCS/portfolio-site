@@ -1,0 +1,18 @@
+.technology-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .3em;
+  max-width: 100%;
+  vertical-align: baseline;
+}
+
+.technology-label > span {
+  min-width: 0;
+}
+
+.technology-label .technology-icon {
+  width: .9em;
+  height: .9em;
+  flex-shrink: 0;
+  color: currentColor;
+}

@@ -16,8 +16,13 @@ import {
   LuWorkflow
 } from 'react-icons/lu';
 import {
+  SiAmazoncloudwatch,
   SiAmazondynamodb,
+  SiAmazoniam,
+  SiAmazonrds,
+  SiAmazons3,
   SiAmazonwebservices,
+  SiApachecassandra,
   SiApachekafka,
   SiClaude,
   SiCmake,
@@ -41,6 +46,7 @@ import {
   SiNginx,
   SiNodedotjs,
   SiOpenai,
+  SiOpentelemetry,
   SiPagerduty,
   SiPostgresql,
   SiPrometheus,
@@ -55,7 +61,7 @@ import {
 } from 'react-icons/si';
 import { TbBrandAzure, TbBrandCSharp } from 'react-icons/tb';
 
-const skillIcons = {
+export const technologyIcons = {
   Python: SiPython,
   'C/C++': SiCplusplus,
   'C#': TbBrandCSharp,
@@ -109,10 +115,43 @@ const skillIcons = {
   Playwright: LuDrama,
   k6: SiK6,
   'Unit testing': LuCircleCheck,
-  'Integration testing': LuWorkflow
+  'Integration testing': LuWorkflow,
+  Cassandra: SiApachecassandra,
+  RDS: SiAmazonrds,
+  S3: SiAmazons3,
+  IAM: SiAmazoniam,
+  CloudWatch: SiAmazoncloudwatch,
+  OpenTelemetry: SiOpentelemetry,
+  Neo4j: LuWaypoints,
+  Cypher: LuWaypoints,
+  'Graph queries': LuWaypoints,
+  pgvector: SiPostgresql
 };
 
-export default function SkillIcon({ name }) {
-  const Icon = skillIcons[name] || LuCodeXml;
-  return <Icon className="skill-icon" aria-hidden="true" focusable="false" />;
+const normalizedTechnologyIcons = new Map(
+  Object.entries(technologyIcons).map(([name, Icon]) => [name.toLowerCase(), Icon])
+);
+
+const technologyAliases = new Map([
+  ['async python', 'python'],
+  ['dockerfiles', 'docker'],
+  ['compose', 'docker'],
+  ['multi-stage builds', 'docker'],
+  ['image builds', 'docker'],
+  ['unit tests', 'unit testing'],
+  ['integration tests', 'integration testing'],
+  ['api design', 'rest apis'],
+  ['networks', 'rest apis'],
+  ['kafka', 'apache kafka']
+]);
+
+export function resolveSkillIcon(name) {
+  const normalizedName = typeof name === 'string' ? name.trim().toLowerCase() : '';
+  const key = technologyAliases.get(normalizedName) || normalizedName;
+  return normalizedTechnologyIcons.get(key) || LuCodeXml;
+}
+
+export default function SkillIcon({ name, className = 'skill-icon' }) {
+  const Icon = resolveSkillIcon(name);
+  return <Icon className={className} aria-hidden="true" focusable="false" />;
 }
