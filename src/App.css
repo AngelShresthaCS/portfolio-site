@@ -224,8 +224,8 @@ section { max-width: var(--content-width); margin: auto; padding: var(--section-
 .cert-status.earned { color: var(--accent); }
 .certification-card .button { align-self: flex-start; margin-top: auto; }
 
-/* Category accents organize one editorial grid, including the expanded skills. */
-#skills .section-intro { margin-bottom: 24px; }
+/* Category accents organize one editorial grid for the complete skills collection. */
+#skills .section-intro { margin-bottom: 20px; }
 .skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 40px; }
 .skill-card { min-width: 0; padding-left: 18px; border-left: 2px solid var(--skill-accent, var(--accent)); }
 .skill-card h3 { color: var(--skill-accent, var(--accent)); font-size: 1.05rem; line-height: 1.5; letter-spacing: 0; margin-bottom: 16px; }
@@ -233,12 +233,6 @@ section { max-width: var(--content-width); margin: auto; padding: var(--section-
 .skill-list li { display: inline-flex; align-items: flex-start; gap: 8px; max-width: 100%; font-size: .9rem; line-height: 1.65; color: var(--text); min-width: 0; }
 .skill-list .skill-icon { width: 16px; height: 16px; margin-top: 3px; color: var(--skill-accent, var(--accent)); }
 .skill-list li span { overflow-wrap: anywhere; }
-.toolkit-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; margin-bottom: 28px; padding: 14px 18px; border: 1px solid var(--control-border); border-radius: 10px; background: var(--accent-soft); color: var(--text); font-size: .95rem; font-weight: 600; text-align: left; cursor: pointer; transition: background-color 160ms ease, border-color 160ms ease; }
-.toolkit-toggle:hover { background: #263c54; border-color: var(--accent); }
-.toolkit-toggle:active { background: #2d465f; }
-.toolkit-toggle > svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent); transition: transform 160ms ease; }
-.toolkit-toggle[aria-expanded='true'] > svg { transform: rotate(180deg); }
-
 .leetcode-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: var(--space-6); }
 .leetcode-copy { max-width: 50ch; }
 .leetcode-copy .lead { font-size: 1rem; color: var(--muted); }

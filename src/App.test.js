@@ -162,40 +162,18 @@ test('experience keeps dates and strongest accomplishments visible while preserv
   expect(screen.queryByRole('heading', { name: 'Service Desk Analyst (Tier II)' })).not.toBeInTheDocument();
 });
 
-test('skills show a generous preview and reveal every original icon within the same six categories', () => {
+test('skills show every original technology and icon within the same six categories', () => {
   render(<App />);
   const skills = sectionWithHeading('Skills');
-  const toggle = within(skills).getByRole('button', { name: /View all skills/ });
   const categories = within(skills).getAllByRole('article');
   expect(categories).toHaveLength(6);
   expect(within(skills).getAllByRole('heading', { level: 3 })).toHaveLength(6);
-  expect(toggle).toHaveAttribute('aria-expanded', 'false');
-  expect(toggle).toHaveAttribute('aria-controls', 'toolkit-grid');
+  expect(within(skills).queryByRole('button', { name: /View all skills|Show fewer skills/ })).not.toBeInTheDocument();
   skillCategories.forEach(category => {
     const article = categories.find(candidate => within(candidate).queryByRole('heading', { name: category.title }));
     expect(within(article).getByRole('heading', { name: category.title })).toBeVisible();
     expect(within(article).getAllByRole('list')).toHaveLength(1);
-    expect(within(article).getAllByRole('listitem')).toHaveLength(category.featuredSkills.length);
-    expect(category.featuredSkills.length).toBeGreaterThanOrEqual(5);
-    category.featuredSkills.forEach(skill => {
-      const label = within(article).getByText(skill);
-      expect(label).toBeVisible();
-      expect(iconForSkill(label)).toHaveAttribute('aria-hidden', 'true');
-    });
-    category.skills.filter(skill => !category.featuredSkills.includes(skill)).forEach(skill => {
-      expect(within(article).queryByText(skill)).not.toBeInTheDocument();
-    });
-  });
-  toggle.focus();
-  fireEvent.click(toggle);
-  expect(within(skills).getByRole('button', { name: /Show fewer skills/ })).toBe(toggle);
-  expect(toggle).toHaveAttribute('aria-expanded', 'true');
-  expect(within(skills).getAllByRole('article')).toEqual(categories);
-  expect(within(skills).getAllByRole('heading', { level: 3 })).toHaveLength(6);
-  expect(within(skills).getAllByRole('list')).toHaveLength(6);
-  expect(within(skills).getAllByRole('listitem')).toHaveLength(51);
-  skillCategories.forEach(category => {
-    const article = categories.find(candidate => within(candidate).queryByRole('heading', { name: category.title }));
+    expect(within(article).getAllByRole('listitem')).toHaveLength(category.skills.length);
     category.skills.forEach(skill => {
       const labels = within(article).getAllByText(skill);
       expect(labels).toHaveLength(1);
@@ -204,11 +182,7 @@ test('skills show a generous preview and reveal every original icon within the s
       expect(iconForSkill(labels[0])).toHaveAttribute('focusable', 'false');
     });
   });
-  fireEvent.click(toggle);
-  expect(within(skills).getByRole('button', { name: /View all skills/ })).toBe(toggle);
-  expect(toggle).toHaveAttribute('aria-expanded', 'false');
-  expect(toggle).toHaveFocus();
-  expect(within(skills).getAllByRole('listitem')).toHaveLength(skillCategories.reduce((count, category) => count + category.featuredSkills.length, 0));
+  expect(within(skills).getAllByRole('listitem')).toHaveLength(51);
 });
 
 test('the learning tree keeps all five branches visible and every original topic and exercise reachable', () => {

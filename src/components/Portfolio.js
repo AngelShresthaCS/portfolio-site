@@ -257,10 +257,10 @@ const skillCategoryAccents = {
   'Testing & tools': '#aebcd7',
 };
 
-function SkillCategory({ category, expanded, index }) {
+function SkillCategory({ category, index }) {
   const primary = category.featuredSkills || category.skills.slice(0, 6);
   const additional = category.skills.filter(skill => !primary.includes(skill));
-  const visibleSkills = expanded ? [...primary, ...additional] : primary;
+  const visibleSkills = [...primary, ...additional];
   const headingId = `toolkit-category-${index}`;
 
   return (
@@ -272,16 +272,11 @@ function SkillCategory({ category, expanded, index }) {
 }
 
 function Skills() {
-  const [expanded, setExpanded] = useState(false);
-
   return (
     <section id="skills">
       <SectionTitle>Skills</SectionTitle>
       <p className="section-intro">The tools I use to build applications, run infrastructure, and understand systems.</p>
-      <button type="button" className="toolkit-toggle" aria-expanded={expanded} aria-controls="toolkit-grid" onClick={() => setExpanded(!expanded)}>
-        <span>{expanded ? 'Show fewer skills' : 'View all skills'}</span><FiChevronDown aria-hidden="true" />
-      </button>
-      <div id="toolkit-grid" className="skills-grid">{skillCategories.map((category, index) => <SkillCategory key={category.title} category={category} expanded={expanded} index={index} />)}</div>
+      <div className="skills-grid">{skillCategories.map((category, index) => <SkillCategory key={category.title} category={category} index={index} />)}</div>
     </section>
   );
 }
