@@ -25,7 +25,7 @@ export default function LeetCodeStats() {
             <p className="leetcode-fallback" role="status">The stats card is temporarily unavailable. Visit my LeetCode profile to see the latest statistics.</p>
           ) : (
             <img
-              src={`https://leetcard.jacoblin.cool/${encodeURIComponent(username)}?theme=dark&font=Inter`}
+              src={`https://leetcard.jacoblin.cool/${encodeURIComponent(username)}?theme=light&font=Inter`}
               alt={`LeetCode statistics for ${username}`}
               width="500" height="200" loading="lazy" decoding="async"
               onError={() => setFailedUsername(username)}

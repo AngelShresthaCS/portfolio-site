@@ -117,7 +117,7 @@ function Hero() {
     <section id="home" className="hero">
       <div className="hero-copy">
         <p className="hero-greeting">Hi, I’m</p>
-        <h1>Angel <span>Shrestha.</span></h1>
+        <h1>Angel <span>Shrestha<span className="hero-punctuation">.</span></span></h1>
         <p className="hero-focus">Software engineering, cloud infrastructure &amp; applied AI.</p>
         <p className="hero-description">I’m a Computer Science student at UT Arlington, building reliable applications and the systems behind them.</p>
         <div className="button-row">
@@ -249,12 +249,12 @@ function Certifications() {
 }
 
 const skillCategoryAccents = {
-  Languages: '#a8ccec',
-  'Backend & frameworks': '#9acfc9',
-  'AI & machine learning': '#dda9ca',
-  'Cloud & DevOps': '#e5c092',
-  'Databases & observability': '#a6ccb8',
-  'Testing & tools': '#aebcd7',
+  Languages: 'var(--cobalt)',
+  'Backend & frameworks': 'var(--teal-ink)',
+  'AI & machine learning': 'var(--violet-ink)',
+  'Cloud & DevOps': 'var(--orange-ink)',
+  'Databases & observability': 'var(--green-ink)',
+  'Testing & tools': 'var(--coral-ink)',
 };
 
 function SkillCategory({ category, index }) {

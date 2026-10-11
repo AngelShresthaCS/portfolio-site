@@ -99,12 +99,9 @@ function SkillBranch({ branch, selectedId, onSelect, onClose, nodeRefs }) {
   const headingId = 'roadmap-branch-' + branch.id;
   return (
     <article
-      className="roadmap-branch"
+      className={'roadmap-branch roadmap-branch--' + branch.id}
       aria-labelledby={headingId}
       style={{
-        '--branch-accent': branch.accent,
-        '--branch-tint': branch.tint,
-        '--branch-connector': branch.connector,
         '--node-count': branch.nodes.length,
       }}
     >

@@ -257,8 +257,8 @@ test('failed contact submissions retain the message and offer direct email', asy
 
 test('keeps professional credentials prominent while showing a visible four-course preview', () => {
   render(<App />);
-  const courses = screen.getByRole('region', { name: 'Courses & training' });
-  expect(within(courses).getByRole('heading', { level: 3, name: 'Courses & training' })).toBeVisible();
+  const courses = screen.getByRole('region', { name: /Courses & training/i });
+  expect(within(courses).getByRole('heading', { level: 3, name: /Courses & training/i })).toBeVisible();
   expect(within(courses).getByText('11 completed')).toBeVisible();
   expect(within(courses).getAllByRole('article')).toHaveLength(4);
   const toggle = within(courses).getByRole('button', { name: 'Show all 11' });
@@ -290,7 +290,7 @@ test('keeps professional credentials prominent while showing a visible four-cour
 
 test('showing all courses preserves supplied credential links and visible IDs, and Show less retains focus', () => {
   render(<App />);
-  const courses = screen.getByRole('region', { name: 'Courses & training' });
+  const courses = screen.getByRole('region', { name: /Courses & training/i });
   const toggle = within(courses).getByRole('button', { name: 'Show all 11' });
   toggle.focus();
   fireEvent.click(toggle);
@@ -338,7 +338,7 @@ test('restores the LeetCode stats card and keeps the profile reachable if the im
   render(<App />);
   const section = screen.getByRole('region', { name: 'A little problem-solving' });
   const stats = within(section).getByRole('img', { name: 'LeetCode statistics for angelshresthacs' });
-  expect(stats).toHaveAttribute('src', 'https://leetcard.jacoblin.cool/angelshresthacs?theme=dark&font=Inter');
+  expect(stats).toHaveAttribute('src', 'https://leetcard.jacoblin.cool/angelshresthacs?theme=light&font=Inter');
   expect(within(screen.getByRole('navigation')).getByRole('link', { name: 'LeetCode', hidden: true })).toHaveAttribute('href', '#leetcode');
   fireEvent.error(stats);
   expect(within(section).getByRole('status')).toHaveTextContent('temporarily unavailable');

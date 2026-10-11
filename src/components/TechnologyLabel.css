@@ -1,18 +1,22 @@
 .technology-label {
   display: inline-flex;
   align-items: center;
-  gap: .3em;
+  gap: .35em;
+  min-width: 0;
   max-width: 100%;
   vertical-align: baseline;
 }
 
 .technology-label > span {
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .technology-label .technology-icon {
-  width: .9em;
-  height: .9em;
+  width: 1em;
+  height: 1em;
+  min-width: 15px;
+  min-height: 15px;
   flex-shrink: 0;
-  color: currentColor;
+  color: var(--branch-ink, var(--branch-accent, var(--skill-ink, var(--skill-accent, var(--accent)))));
 }
